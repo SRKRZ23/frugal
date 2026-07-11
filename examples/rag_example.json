@@ -1,0 +1,30 @@
+[
+  {
+    "query": "What is the capital of France?",
+    "retrieved": [
+      {"id": "d1", "text": "Paris is the capital and largest city of France."},
+      {"id": "d2", "text": "France is a country in Western Europe."}
+    ],
+    "gold_ids": ["d1"],
+    "answer": "The capital of France is Paris.",
+    "citations": ["d1"]
+  },
+  {
+    "query": "Who wrote Hamlet?",
+    "retrieved": [
+      {"id": "d5", "text": "Hamlet is a tragedy written by William Shakespeare."}
+    ],
+    "gold_ids": ["d5"],
+    "answer": "Hamlet was written by William Shakespeare.",
+    "citations": ["d5"]
+  },
+  {
+    "query": "Boiling point of water?",
+    "retrieved": [
+      {"id": "d9", "text": "Penguins are flightless birds living in the southern hemisphere."}
+    ],
+    "gold_ids": ["d7"],
+    "answer": "Water boils at 100 degrees Celsius at sea level.",
+    "citations": []
+  }
+]

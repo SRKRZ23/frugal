@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frugal"
+version = "0.1.0"
+description = "Run AI agents cheap, local, and verified — a drop-in LLM ops stack: metering, cost-routing, eval, local/on-prem serving, RAG checks, and an MCP cost server."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Sardor Razikov" }]
+keywords = ["llm", "cost", "routing", "eval", "mcp", "observability", "local-llm", "on-prem", "rag", "agents"]
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.30"]
+mcp = ["mcp>=1.0"]
+gateway = ["fastapi>=0.110", "uvicorn>=0.29"]
+otel = ["opentelemetry-sdk>=1.20"]
+dev = ["pytest>=7", "pytest-cov", "fastapi>=0.110", "httpx>=0.24", "uvicorn>=0.29"]
+all = ["openai>=1.0", "anthropic>=0.30", "mcp>=1.0", "fastapi>=0.110", "uvicorn>=0.29", "opentelemetry-sdk>=1.20", "pytest>=7"]
+
+[project.scripts]
+frugal = "frugal.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/frugal-ai/frugal"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

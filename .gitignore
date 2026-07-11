@@ -1,0 +1,26 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.env
+
+# tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# benchmark artifacts that are machine-specific (keep the .md results, drop transient)
+benchmarks/*_run.log
+benchmarks/debate.log
+benchmarks/swarm.log
+benchmarks/RESULTS_MODELS.json
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
