@@ -1,0 +1,68 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  html,body{margin:0}
+  #c{width:1600px;height:900px;background:#080a08;color:#f1f5f1;position:relative;overflow:hidden;
+    font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
+    background-image:radial-gradient(50% 70% at 85% 12%, rgba(0,230,118,.16), transparent 60%);}
+  #c:before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(0,230,118,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.045) 1px,transparent 1px);
+    background-size:48px 48px;}
+  .mono{font-family:ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace}
+  .pad{position:relative;padding:64px 72px;height:100%;box-sizing:border-box;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:18px}
+  .brand svg{filter:drop-shadow(0 0 14px rgba(0,230,118,.6))}
+  .brand .w{font-family:ui-monospace,monospace;font-weight:700;font-size:50px;letter-spacing:-.03em}
+  h1{font-family:ui-monospace,monospace;font-weight:700;letter-spacing:-.03em;font-size:66px;line-height:1.04;margin:22px 0 0}
+  h1 .g{color:#00e676}
+  .sub{color:#c3ccc3;font-size:26px;margin-top:18px;max-width:60ch;line-height:1.4}
+  .cols{display:flex;gap:40px;margin-top:34px;flex:1}
+  .panel{background:rgba(15,19,15,.66);border:1px solid #1d241d;border-radius:16px;padding:26px 30px}
+  .panel .h{font-family:ui-monospace,monospace;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:#00e676;margin-bottom:14px}
+  .roster{flex:1.35}
+  .roster .row{font-size:21px;color:#e6ede6;padding:7px 0;line-height:1.35}
+  .roster .row b{color:#fff}
+  .roster .row span{color:#8a978a}
+  .save{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .save .big{font-family:ui-monospace,monospace;font-weight:700;font-size:58px;color:#00e676;letter-spacing:-.03em;line-height:1}
+  .save .r{font-size:22px;color:#c3ccc3;margin:6px 0 22px}
+  .save .m{font-family:ui-monospace,monospace;font-size:20px;color:#e6ede6;padding:6px 0;border-top:1px solid #1d241d}
+  .save .m b{color:#00e676}
+  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:30px}
+  .foot .l{font-family:ui-monospace,monospace;font-size:24px;color:#f1f5f1}
+  .foot .l b{color:#00e676}
+  .foot .by{font-size:20px;color:#8a978a}
+</style></head><body>
+<div id="c"><div class="pad">
+  <div class="brand">
+    <svg width="58" height="58" viewBox="0 0 26 26"><polyline points="2,7 9,11 14,9 23,20" fill="none" stroke="#00e676" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="20" r="2.6" fill="#00e676"/></svg>
+    <span class="w">frugal</span>
+    <span style="flex:1"></span>
+    <span class="mono" style="font-size:19px;color:#8a978a">open-source · Apache-2.0</span>
+  </div>
+  <h1>Big Tech is burning <span class="g">real money</span> on tokens.</h1>
+  <div class="sub">Inference is now <b style="color:#fff">85% of the enterprise AI budget</b>. Frugal routes the cheap/local model first and escalates only when a real check fails.</div>
+  <div class="cols">
+    <div class="panel roster">
+      <div class="h">Who's burning it — 2026</div>
+      <div class="row"><b>Meta</b> $125–145B capex · <b>Amazon</b> ~$200B <span>· inference-first</span></div>
+      <div class="row"><b>Google</b> 1.3 quadrillion tokens / month</div>
+      <div class="row"><b>xAI</b> $1.25B/mo compute · <b>Microsoft</b> Copilot meter-shock</div>
+      <div class="row"><b>Uber</b> <span>burned its whole 2026 AI-coding budget by April</span></div>
+      <div class="row"><b>A Fortune-500 firm</b> <span>— $500M on Claude in one month</span></div>
+      <div class="row"><b>Palantir</b> <span>CEO: token pricing is "broken" → air-gapped AI</span></div>
+      <div class="row"><b>Klarna</b> 2.3M AI conversations / month</div>
+    </div>
+    <div class="panel save">
+      <div class="h">Frugal saves (modeled)</div>
+      <div class="big">75–97%</div>
+      <div class="r">cheaper on a real workload</div>
+      <div class="m">$1M/mo → <b>save $6–9M/yr</b></div>
+      <div class="m">$10M/mo → <b>save $60–90M/yr</b></div>
+      <div class="m" style="border-bottom:1px solid #1d241d">measured: <b>3B ≈ 14B</b> on 83% hard</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="l"><b>github.com/SRKRZ23/frugal</b> · frugal-cost-router.netlify.app</div>
+    <div class="by">by Sardor Razikov · @SardorRazi99093</div>
+  </div>
+</div></div>
+</body></html>

@@ -1,5 +1,7 @@
 # Frugal
 
+<p align="center"><img src="assets/banner.png" alt="Frugal — run AI agents cheap, local, and verified" width="100%"></p>
+
 **🇬🇧 English · [🇷🇺 Русский](README.ru.md)**
 
 [![CI](https://github.com/SRKRZ23/frugal/actions/workflows/ci.yml/badge.svg)](https://github.com/SRKRZ23/frugal/actions/workflows/ci.yml)
@@ -285,6 +287,13 @@ to the heavy tier, and the **privacy invariant holds over a real network hop** �
 Runnable stories under [`examples/scenarios/`](examples/scenarios/), each proving one value:
 `scenario_coding_agent.py` (budget-capped agent), `scenario_private_data.py` (0 leaks),
 `scenario_ci_eval.py` (catch a silent regression in CI).
+
+## For enterprises
+
+Inference is now **~85% of the enterprise AI budget**. Uber burned its whole 2026 AI-coding budget by
+April; one firm spent **$500M on Claude in a month**; Palantir's CEO calls token pricing "broken."
+Frugal routes around it. At **$10M/mo** inference spend that's a modeled **$60–90M/yr** saved.
+→ **[ENTERPRISE.md](ENTERPRISE.md)** (the roster + math, with sources).
 
 ## Also in this repo
 

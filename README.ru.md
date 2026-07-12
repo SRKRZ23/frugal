@@ -1,5 +1,7 @@
 # Frugal
 
+<p align="center"><img src="assets/banner.png" alt="Frugal — гоняй AI-агентов дёшево, локально и с проверкой" width="100%"></p>
+
 **🇷🇺 Русский · [🇬🇧 English](README.md)**
 
 [![CI](https://github.com/SRKRZ23/frugal/actions/workflows/ci.yml/badge.svg)](https://github.com/SRKRZ23/frugal/actions/workflows/ci.yml)
@@ -107,6 +109,13 @@ print(FrugalMCP(meter).call("get_cost_summary"))
 - 0 runtime-зависимостей. Честный аудит слабостей: [WEAKNESSES.md](WEAKNESSES.md).
 - Замерено на кластере: 3B ≈ 14B на 83% сложных задач (100% простых), ~4.7–11× быстрее.
   Это **LLM-судья, не человек**, малый N — мы это прямо пишем.
+
+## Для enterprise
+
+Инференс — уже **~85% enterprise AI-бюджета**. Uber спалил весь AI-coding бюджет 2026 к апрелю; одна
+фирма — **$500M на Claude за месяц**; CEO Palantir называет token-pricing «сломанным». Frugal это
+обходит. При спенде **$10M/мес** это моделируемые **$60–90M/год** экономии.
+→ **[ENTERPRISE.ru.md](ENTERPRISE.ru.md)** (ростер + математика, с источниками).
 
 ## Автор
 
