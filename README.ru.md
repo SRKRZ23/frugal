@@ -185,6 +185,23 @@ cost-эффективный инференс, сжатие. Открыт к acqu
 [LinkedIn](https://linkedin.com/in/sardor-razikov-569a5327b) ·
 [X](https://x.com/SardorRazi99093) · razikovsardor1@gmail.com · razikovs777@gmail.com
 
+## Поддержка и что дальше
+
+Frugal собран и замерен **в одиночку, на арендованных обычных CPU/GPU-нодах** — и это же потолок.
+Числа выше упираются в CPU или сняты на маленькой GPU с частичным офлоадом; главный анлок — **железо**.
+Полноразмерная GPU (или ускоритель класса AMD MI300X) делает дешёвый тир почти мгновенным и позволяет
+вывести бенчмарки из «малый N, одна арендованная нода» в широкие, оценённые человеком, много-нагрузочные —
+и открыто.
+
+**Открыт к поддержке, которая это сделает возможным:**
+
+- 🅰️ **Ангельские инвестиции** — на compute, оценки и работу full-time над on-prem AI cost-efficiency стеком (Frugal + [REPOMIND v3](https://github.com/SRKRZ23/repomind-v3)).
+- 🎁 **Невозвратные гранты** — research / OSS / hardware гранты; без доли, без возврата.
+- 🖥️ **Спонсорство железа** — доступ к GPU / ускорителям (AMD ROCm в первую очередь), чтобы гонять большие бенчмарки открыто.
+- 🤝 **Acquisition / acquihire** — как сильные малые команды присоединялись к большим ради людей и IP (паттерн Wang / Suleyman / Shazeer). Frugal и REPOMIND — единый тезис про on-prem, cost-эффективный инференс; принесу оба.
+
+📬 **Sardor Razikov** — razikovsardor1@gmail.com · [GitHub](https://github.com/SRKRZ23) · [LinkedIn](https://linkedin.com/in/sardor-razikov-569a5327b) · [X](https://x.com/SardorRazi99093)
+
 ## Лицензия
 
 Apache-2.0. © 2026 Sardor Razikov.

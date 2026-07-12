@@ -213,10 +213,9 @@ reproduce with `python benchmarks/run_all.py` (writes [`benchmarks/RESULTS.md`](
 > retention on real models, run [`benchmarks/bench_cluster.py`](benchmarks/bench_cluster.py)
 > against your cluster.
 
-### Real-model results (measured on a real cluster node)
+### Real-model results (measured on a rented CPU node)
 
-Run on a **cluster node** (carlito4, an i7-8700 CPU node in a 12-node Tailscale fleet)
-via `benchmarks/bench_cluster.py`, using that node's own Ollama models —
+Run on a **rented CPU node** via `benchmarks/bench_cluster.py`, using that node's own Ollama models —
 **`qwen2.5-coder:3b` (cheap) + `qwen2.5:7b` (strong)**, CPU inference, self-consistency
 confidence, 6 prompts. Single-run, real numbers (model sampling is nondeterministic):
 
@@ -228,7 +227,7 @@ confidence, 6 prompts. Single-run, real numbers (model sampling is nondeterminis
 | escalations (self-consistency) | **2 / 6** — only the uncertain prompts escalate |
 | local token cost | **$0** (on-prem); modelled cloud ≈ $55 / 1M requests at $0.90/1M |
 
-Earlier laptop stand-in run (`qwen2.5:0.5b` + `qwen2.5:3b`) showed the **confidence-signal
+An earlier smaller-model stand-in run (`qwen2.5:0.5b` + `qwen2.5:3b`) showed the **confidence-signal
 finding** starkly: **hedging** confidence escalated **0/12** (real models don't self-hedge —
 useless signal), while **self-consistency** escalated **9/12**.
 
@@ -238,11 +237,11 @@ use `frugal.route.make_self_consistency(...)` (or logprobs / a verifier). A bigg
 model raises the cheap≈strong rate (17% with 0.5b → 67% with 3b-coder), so more traffic
 safely stays cheap. This is what the benchmark surfaces instead of hiding.
 
-### Cross-model comparison (real cluster, LLM-judged)
+### Cross-model comparison (rented node, LLM-judged)
 
-<p align="center"><img src="assets/charts/models.png" alt="A 3B model kept up with a 14B at 4.7x the speed — real cluster, LLM-judged" width="100%"></p>
+<p align="center"><img src="assets/charts/models.png" alt="A 3B model kept up with a 14B at 4.7x the speed — rented node, LLM-judged" width="100%"></p>
 
-`benchmarks/bench_models.py` on cluster node **carlito4** — five real Ollama models,
+`benchmarks/bench_models.py` on a **rented CPU node** — five real Ollama models,
 CPU inference, quality graded by an **LLM judge** (`qwen2.5:7b`) against reference
 `phi4:14b` (5 prompts, `num_predict=220`):
 
@@ -263,7 +262,7 @@ CPU inference, quality graded by an **LLM judge** (`qwen2.5:7b`) against referen
    `deepseek-r1:14b` was the slowest (113s) with no quality gain — exactly the "token tsunami"
    Frugal exists to route around.
 3. **Honest caveats:** N=5, relatively easy prompts → retention saturates at 100%; the 7B
-   judge is lenient; CPU-only (GPU nodes were busy mining). Reproduce: `FRUGAL_MODELS=...
+   judge is lenient; CPU-only on the rented node. Reproduce: `FRUGAL_MODELS=...
    FRUGAL_BENCH_N=... python benchmarks/bench_models.py`.
 
 #### Harder prompts break the 100% saturation
@@ -282,24 +281,25 @@ prompt in 6, which is **exactly the traffic escalation should catch**. It's stil
 and good enough on 83% — so the routing thesis holds *and* now has a measured escalation
 rate instead of a saturated 100%.
 
-### GPU vs CPU for the cheap tier (real GTX 1650)
+### GPU vs CPU for the cheap tier (rented GPU)
 
-Ran `qwen2.5-coder:3b` on a **GTX 1650 (4GB)** GPU node (`benchmarks/bench_gpu/`), CUDA
-confirmed (partial offload — a 3B model doesn't fully fit 4GB):
+Ran `qwen2.5-coder:3b` on a **modest rented GPU** (`benchmarks/bench_gpu/`), CUDA
+confirmed (partial offload — a 3B model doesn't fully fit a small card):
 
 | cheap tier `coder:3b` | p50 | tok/s |
 |---|---|---|
-| CPU (i7-8700, carlito4) | 12.7s | 6.5 |
-| **GPU (GTX 1650, carlito20)** | **1.13s** | 11.5 |
+| rented CPU node | 12.7s | 6.5 |
+| **modest rented GPU** | **1.13s** | 11.5 |
 
 **~11× faster on a modest GPU.** That's the routing thesis's punchline: on any GPU the
 cheap tier is near-instant, so you route almost everything to it and escalate the ~17% of
-hard prompts a real confidence check flags. (A bigger card than a 4GB 1650 would fit the
-model fully and go faster still.)
+hard prompts a real confidence check flags. (A bigger card would fit the model fully and go
+faster still — which is exactly the hardware this project is bottlenecked on; see
+[Backing](#backing--whats-next).)
 
 ### Live bake-off vs a plain proxy
 
-`benchmarks/compare_litellm_live.py` on the cluster — same models (`qwen2.5-coder:3b` /
+`benchmarks/compare_litellm_live.py` on a rented node — same models (`qwen2.5-coder:3b` /
 `qwen2.5:7b`), same 12 prompts. A proxy (LiteLLM-style) sends every prompt to the strong
 model; Frugal routes by complexity:
 
@@ -329,13 +329,13 @@ python benchmarks/bench_cluster.py   # real latency, tokens, $, quality-retentio
 
 ### Multi-node distributed routing (two physical machines)
 
-`benchmarks/bench_multinode.py` — cheap tier on **node A** (laptop, `qwen2.5:3b`), strong
-tier on **node B** (cluster node `carlito4`, `qwen2.5:7b`, reached over an SSH tunnel — no
-config change on the cluster). LocalRouter decides per prompt; 8-prompt balanced mix:
+`benchmarks/bench_multinode.py` — cheap tier on **node A** (a local machine, `qwen2.5:3b`),
+strong tier on **node B** (a rented node, `qwen2.5:7b`, reached over an SSH tunnel).
+LocalRouter decides per prompt; 8-prompt balanced mix:
 
 | metric | value |
 |---|---|
-| routed to node A (local) / node B (cluster) | **7 / 1** |
+| routed to node A (local) / node B (rented) | **7 / 1** |
 | node A latency p50 | **0.53s** |
 | node B latency (the one hard prompt) | **50.5s** (7B on a busy CPU node) |
 | private prompts | 2 |
@@ -407,6 +407,23 @@ Not promising a foundation — promising honest, responsive upkeep and a public 
 The `frugal.mcp.guard` PII/injection checks are a **first-line heuristic**, not a security
 product — they catch the obvious and miss the clever; don't make them your only control. Report
 vulnerabilities via a private issue. See [WEAKNESSES.md](WEAKNESSES.md) for the full honest audit.
+
+## Backing & what's next
+
+Frugal is built and benchmarked **solo, on rented commodity CPU/GPU nodes** — which is also the
+ceiling. The numbers above are CPU-bound or run on a small partial-offload GPU; the single biggest
+unlock is **hardware**. A full-fit GPU (or an AMD MI300X-class accelerator) makes the cheap tier
+near-instant and lets the benchmarks graduate from "small N, one rented node" to broad, human-graded,
+multi-workload proof — in the open.
+
+**I'm open to the support that makes that happen:**
+
+- 🅰️ **Angel investment** — to fund compute, evaluations, and full-time work on the on-prem AI cost-efficiency stack (Frugal + [REPOMIND v3](https://github.com/SRKRZ23/repomind-v3)).
+- 🎁 **Non-refundable grants** — research / OSS / hardware grants; no equity, no repayment.
+- 🖥️ **Hardware sponsorship** — GPU / accelerator access (AMD ROCm-first) to run the bigger benchmarks publicly.
+- 🤝 **Acquisition / acquihire** — the way strong small teams have joined larger ones for their people and IP (the Wang / Suleyman / Shazeer pattern). Frugal and REPOMIND are one on-prem, cost-efficient-inference thesis — I'd bring both.
+
+📬 **Sardor Razikov** — razikovsardor1@gmail.com · [GitHub](https://github.com/SRKRZ23) · [LinkedIn](https://linkedin.com/in/sardor-razikov-569a5327b) · [X](https://x.com/SardorRazi99093)
 
 ## License
 

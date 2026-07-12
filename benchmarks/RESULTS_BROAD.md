@@ -1,4 +1,4 @@
-# Frugal broad eval — judge panel (2026-07-12 05:12, carlito4)
+# Frugal broad eval — judge panel (2026-07-12 05:12, a rented CPU node)
 
 _Cheap **qwen2.5-coder:3b** vs strong **qwen2.5:7b**, judged by a PANEL ['qwen2.5:7b', 'mathstral:7b'] (majority vote). Still LLM-judged, NOT human — a panel + categories reduce bias; human eval is still owed._
 

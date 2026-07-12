@@ -1,6 +1,6 @@
 # Frugal cross-model benchmark
 
-_Measured 2026-07-11 17:58 on **carlito4** (real Ollama models, CPU inference). Judge: qwen2.5:7b. Reference: phi4:14b._
+_Measured 2026-07-11 17:58 on **a rented CPU node** (real Ollama models, CPU inference). Judge: qwen2.5:7b. Reference: phi4:14b._
 
 | model | p50 s | p95 s | tok/s | avg out tok | judge quality 0-1 | retention vs ref |
 |---|---|---|---|---|---|---|
