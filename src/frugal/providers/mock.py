@@ -19,18 +19,29 @@ TIER_MODELS = {
 _MODEL_TIER = {v: k for k, v in TIER_MODELS.items()}
 
 _HARD_SIGNALS = (
-    "prove", "analyze", "architecture", "refactor", "step by step",
-    "why", "trade-off", "tradeoff", "design", "optimize", "derive",
+    # reasoning / analysis
+    "prove", "proof", "analyz", "reason", "rigorous", "derive", "theorem",
+    "step by step", "step-by-step", "why", "trade-off", "tradeoff", "optimal",
+    "optimize", "compare", "evaluate", "justify", "explain how",
+    # engineering / systems
+    "architecture", "refactor", "design", "distributed", "consensus", "concurren",
+    "algorithm", "complexity", "correct under", "partition", "scal",
 )
 
 
 def prompt_complexity(prompt: str) -> float:
-    """0..1 heuristic used by both the mock and the router. Pure + deterministic."""
+    """0..1 heuristic used by both the mock and the router. Pure + deterministic.
+
+    A rough pre-check, NOT a measurement: it under- or over-flags on real traffic.
+    `frugal diagnose --live` replaces it with a measured routing decision per prompt.
+    """
     p = prompt.lower()
-    length_term = min(1.0, len(prompt) / 400.0)
+    # most real prompts are < ~280 chars; long prompts carry more to reason about.
+    length_term = min(1.0, len(prompt) / 280.0)
     signal_term = min(1.0, sum(s in p for s in _HARD_SIGNALS) / 3.0)
-    q_term = 0.2 if "?" in prompt else 0.0
-    return min(1.0, 0.5 * length_term + 0.4 * signal_term + q_term)
+    q_term = 0.15 if "?" in prompt else 0.0
+    code_term = 0.15 if ("```" in prompt or "def " in p or "class " in p) else 0.0
+    return min(1.0, 0.45 * length_term + 0.45 * signal_term + q_term + code_term)
 
 
 class MockProvider:

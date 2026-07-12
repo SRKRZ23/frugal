@@ -10,6 +10,10 @@ Two honesty rules are baked in:
   2. It is clearly labelled a PROJECTION, not a measurement. The complexity heuristic decides
      the routing split; the dollar figures use editable list prices. For measured cost AND
      quality numbers you must run the live diagnostic against your own models on your traffic.
+
+For the MEASURED version use `diagnose_live()` / `frugal diagnose --live`: it actually routes
+every prompt through the cascade against real models and observes cost, latency and escalation
+(no heuristic). Point it at a local/on-prem Ollama to keep data in-house.
 """
 import json
 from dataclasses import dataclass, field
@@ -112,6 +116,145 @@ def diagnose_prompts(
         cheap_model=cheap_model,
         frontier_model=frontier_model,
         threshold=threshold,
+        rows=rows,
+    )
+
+
+@dataclass
+class LiveRow:
+    prompt_preview: str
+    model_used: str
+    escalated: bool
+    cost_usd: float
+    latency_s: float
+
+
+@dataclass
+class LiveDiagnosis:
+    """A MEASURED diagnosis: every prompt was actually sent through the cascade against
+    real models. Nothing here is a heuristic guess — cost, latency and the escalation
+    decision are observed, not projected."""
+    n: int
+    escalate_frac: float
+    cheap_frac: float
+    frugal_cost_usd: float              # measured total actually spent by the cascade
+    baseline_frontier_cost_usd: float   # measured cost of the same prompts, all on frontier
+    saved_vs_frontier_frac: float       # can be negative
+    p50_latency_s: float
+    cheap_model: str
+    frontier_model: str
+    confidence: str
+    min_confidence: float
+    rows: List["LiveRow"] = field(default_factory=list)
+
+    def summary(self) -> str:
+        pct = lambda f: f"{100 * f:.1f}%"
+        priced = self.baseline_frontier_cost_usd > 0
+        lines = [
+            "frugal diagnose --live — MEASURED (every prompt actually routed through real models)",
+            f"  prompts routed        : {self.n}",
+            f"  confidence signal     : {self.confidence} (escalate below {self.min_confidence})",
+            f"  stayed on cheap/local : {pct(self.cheap_frac):>7}   ({self.cheap_model})",
+            f"  escalated to frontier : {pct(self.escalate_frac):>7}   ({self.frontier_model})",
+            f"  median latency        : {self.p50_latency_s:.2f}s / prompt",
+        ]
+        if priced:
+            sign = "+" if self.saved_vs_frontier_frac >= 0 else "−"
+            lines += [
+                f"  measured spend        : ${self.frugal_cost_usd:.6f}",
+                f"  all-on-frontier spend : ${self.baseline_frontier_cost_usd:.6f}",
+                f"  measured savings      : {sign}{pct(abs(self.saved_vs_frontier_frac))} vs all-on-frontier",
+            ]
+        else:
+            lines.append("  measured spend        : $0 (local models are free) — the win here is "
+                         "LATENCY/throughput, not dollars. Map to API list prices for a $ figure.")
+        return "\n".join(lines)
+
+
+def diagnose_live(
+    prompts: List[Union[str, dict]],
+    cheap_model: str,
+    frontier_model: str,
+    *,
+    provider=None,
+    backend: str = "ollama",
+    host: str = "http://localhost:11434",
+    base_url: str = None,
+    api_key: str = None,
+    min_confidence: float = 0.6,
+    confidence: str = "verifier",
+    out_tokens: int = 300,
+) -> LiveDiagnosis:
+    """Actually route every prompt through the cascade against REAL models and measure
+    what happens. Unlike `diagnose_prompts`, nothing is a heuristic — cost, latency and
+    escalation are observed. Pass `provider=` to inject a stub (used in tests).
+
+    NOTE: this DOES call models, so prompts leave the machine iff the backend is remote.
+    Point `--backend ollama --host` at a local/on-prem server to keep data in-house.
+    """
+    import time
+
+    from .meter import Meter
+    from .meter.pricing import cost_of
+    from .route import cascade
+    from .route.confidence import (
+        make_logprob_confidence,
+        make_self_consistency,
+        make_verifier_confidence,
+    )
+
+    if provider is None:
+        if backend == "ollama":
+            from .providers import get_ollama
+            provider = get_ollama(model=cheap_model, host=host)
+        else:
+            from .providers import get_openai
+            provider = get_openai(model=cheap_model, base_url=base_url, api_key=api_key)
+
+    conf_fn = {
+        "verifier": make_verifier_confidence,
+        "self-consistency": make_self_consistency,
+        "logprob": make_logprob_confidence,
+        "hedge": lambda: None,
+    }.get(confidence, make_verifier_confidence)()
+
+    ladder = (cheap_model, frontier_model)
+    rows: List[LiveRow] = []
+    esc = 0
+    frug_cost = base_cost = 0.0
+    latencies: List[float] = []
+    for p in prompts:
+        text = p if isinstance(p, str) else str(p)
+        meter = Meter()
+        t0 = time.perf_counter()
+        r = cascade(text, provider, meter, ladder=ladder, min_confidence=min_confidence,
+                    confidence_fn=conf_fn, warn_economics=False, max_tokens=out_tokens)
+        dt = time.perf_counter() - t0
+        latencies.append(dt)
+        esc += 1 if r.escalated else 0
+        frug_cost += meter.total_cost
+        out_tok = r.response.output_tokens if r.response else out_tokens
+        base_cost += cost_of(frontier_model, count_tokens(text), out_tok)
+        rows.append(LiveRow(text[:60].replace("\n", " "), r.model_used, r.escalated,
+                            round(meter.total_cost, 6), round(dt, 3)))
+
+    n = len(prompts)
+    denom = n or 1
+    saved = (1 - frug_cost / base_cost) if base_cost else 0.0
+    ordered = sorted(latencies)
+    p50 = ordered[len(ordered) // 2] if ordered else 0.0
+    return LiveDiagnosis(
+        n=n,
+        escalate_frac=esc / denom,
+        cheap_frac=1 - esc / denom,
+        frugal_cost_usd=round(frug_cost, 6),
+        baseline_frontier_cost_usd=round(base_cost, 6),
+        saved_vs_frontier_frac=saved,
+        p50_latency_s=round(p50, 3),
+        cheap_model=cheap_model,
+        frontier_model=frontier_model,
+        confidence=confidence,
+        min_confidence=min_confidence,
         rows=rows,
     )
 

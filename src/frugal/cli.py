@@ -112,14 +112,20 @@ def cmd_demo(args) -> int:
 
 
 def cmd_diagnose(args) -> int:
-    from .diagnose import diagnose_prompts, load_prompts
+    from .diagnose import diagnose_live, diagnose_prompts, load_prompts
     prompts = load_prompts(args.file)
     if not prompts:
         print(f"no prompts found in {args.file}")
         return 1
-    d = diagnose_prompts(prompts, current_model=args.current, cheap_model=args.cheap,
-                         frontier_model=args.frontier, threshold=args.threshold,
-                         out_tokens=args.out_tokens)
+    if args.live:
+        d = diagnose_live(prompts, cheap_model=args.cheap, frontier_model=args.frontier,
+                          backend=args.backend, host=args.host, base_url=args.base_url,
+                          min_confidence=args.threshold, confidence=args.confidence,
+                          out_tokens=args.out_tokens)
+    else:
+        d = diagnose_prompts(prompts, current_model=args.current, cheap_model=args.cheap,
+                             frontier_model=args.frontier, threshold=args.threshold,
+                             out_tokens=args.out_tokens)
     print(d.summary())
     return 0
 
@@ -157,8 +163,13 @@ def build_parser() -> argparse.ArgumentParser:
     dg.add_argument("--current", default="gpt-4o", help="the model you run today (the baseline you're compared against)")
     dg.add_argument("--cheap", default="gpt-4o-mini", help="the cheap/local tier Frugal routes to first")
     dg.add_argument("--frontier", default="gpt-4o", help="the frontier tier Frugal escalates to")
-    dg.add_argument("--threshold", type=float, default=0.6, help="complexity score above which a prompt escalates")
-    dg.add_argument("--out-tokens", type=int, default=300, dest="out_tokens", help="assumed output tokens/request")
+    dg.add_argument("--threshold", type=float, default=0.6, help="offline: complexity to escalate. --live: min confidence to stay cheap")
+    dg.add_argument("--out-tokens", type=int, default=300, dest="out_tokens", help="offline: assumed output tokens/request; live: max_tokens cap")
+    dg.add_argument("--live", action="store_true", help="MEASURE (not project): actually route every prompt through real models and observe cost/latency/escalation")
+    dg.add_argument("--backend", default="ollama", choices=["ollama", "openai"], help="--live backend")
+    dg.add_argument("--host", default="http://localhost:11434", help="--live ollama host (point at a local/on-prem server to keep data in-house)")
+    dg.add_argument("--base-url", default=None, dest="base_url", help="--live openai-compatible base url")
+    dg.add_argument("--confidence", default="verifier", choices=["verifier", "self-consistency", "logprob", "hedge"], help="--live confidence signal for the escalate decision")
     dg.set_defaults(func=cmd_diagnose)
 
     v = sub.add_parser("version", help="print version")

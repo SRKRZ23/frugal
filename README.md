@@ -164,7 +164,9 @@ print(FrugalMCP(meter).call("get_cost_summary"))
 
 ```bash
 frugal demo                     # offline end-to-end showcase
-frugal diagnose your_log.jsonl  # project savings on YOUR prompt log — offline, no model called, nothing leaves the box
+frugal diagnose your_log.jsonl  # PROJECT savings on YOUR prompt log — offline, no model called, nothing leaves the box
+frugal diagnose your_log.jsonl --live --backend ollama --host http://localhost:11434 \
+        --cheap qwen2.5:7b --frontier phi4:14b   # MEASURE it: really route each prompt, observe cost+latency+escalation
 frugal route "explain this bug" # cascade-route one prompt, print cost
 frugal rag check examples/rag_example.json
 frugal mcp                      # list the MCP cost-telemetry tools

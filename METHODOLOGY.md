@@ -30,6 +30,27 @@ escalation rate from `benchmarks/RESULTS_MODELS_HARD.md`. Honest caveats on that
 So it is a **signal, not proof**. It is enough to model cost arithmetic honestly; it is **not**
 enough to claim a quality guarantee on someone else's workload.
 
+## Measured: real cross-model run (not mock, not borrowed)
+
+To stop leaning on a mock provider, we ran the cheap→frontier pair on **real Ollama models**
+and had an LLM judge grade the answers. This is the actual `benchmarks/RESULTS_MODELS.md`
+output, not a hand-typed number.
+
+_Measured 2026-07-13 on **carlito4**, CPU inference. Judge: qwen2.5:7b. Reference: phi4:14b. N=6 prompts._
+
+| model | p50 s | p95 s | tok/s | judge quality 0–1 | agreement with reference |
+|---|---|---|---|---|---|
+| **qwen2.5:7b** (cheap tier) | **62.3** | 76.6 | 3.1 | 0.750 | **5/6 (83%)** |
+| phi4:14b (frontier ref) | 122.8 | 162.3 | 1.6 | 0.767 | ref |
+
+**Reading:** the cheap 7B tier ran **2.0× faster** (p50) at **~98% of the frontier's judged
+quality** (0.750 vs 0.767) and agreed with the reference on **5 of 6** prompts. That is the
+empirical basis for "route to the cheap tier first, escalate the ~1-in-6 it gets wrong."
+
+Honest caveats, same as below: **LLM-judged** (not human), **N=6** (tiny), **CPU / single-run /
+nondeterministic sampling**, and **English** prompts — not the tuned-vLLM, human-graded, Korean
+workload that would make it proof. It is a real measurement replacing a mock, not a guarantee.
+
 ## What is NOT proven here (and what would prove it)
 
 The following do **not** exist yet, and we do not pretend they do:
