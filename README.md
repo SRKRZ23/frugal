@@ -199,7 +199,7 @@ reproduce with `python benchmarks/run_all.py` (writes [`benchmarks/RESULTS.md`](
 
 | What | Result | Notes |
 |---|---|---|
-| **Cost saved by routing** vs frontier-only | **−92.1%** on a 26-prompt mix (⚠️ **demo prices**) | exact cost math on the mock price table. **Real-price savings are ~75–91% (cloud) / up to ~97% (local)** — and it can even *lose* money on small price gaps. Full honest numbers: [live savings breakdown](https://frugal-cost-router.netlify.app/#savings) (or run `cost_model.py`) |
+| **Cost saved by routing** — *baseline named, no strawman* | **~70–79%** vs a **frontier-default** baseline (gpt-4o-mini→gpt-4o), up to **~97%** with a local $0 tier, and **negative (−3 to −12%)** on a small price gap (Haiku→Sonnet) | vs a **tuned static-cheap** baseline, Frugal costs **more** — its value there is quality-recovery on the escalated ~17% + governance + a measured $/token, **not** a lower bill. Real 2026 prices; run `benchmarks/cost_model.py`. Full method + what's *not* proven: **[METHODOLOGY.md](METHODOLOGY.md)** |
 | **Private-prompt leaks** to cloud | **0 / 6** | privacy invariant: `private`-tagged prompts always stay local |
 | Local share of a mixed workload | **96.2%** kept off the paid tier | complexity heuristic favours the cheap tier (tunable) |
 | Hallucination-flag precision / recall | **1.0 / 1.0** on the labelled set | heuristic gate; small set |
