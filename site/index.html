@@ -243,7 +243,7 @@
   <section>
     <div class="head rv"><div class="eyebrow">Measured, not asserted</div>
       <h2>A 3B model matched a 14B on most tasks.</h2>
-      <p>Graded by an LLM judge on a real cluster. Small model, big model, honest verdict.</p></div>
+      <p>Graded by an LLM judge on a rented node. Small model, big model, honest verdict.</p></div>
     <div class="stats">
       <div class="stat rv"><div class="n"><span data-count="83" data-suffix="%">0%</span></div><div class="c">of hard tasks the cheap 3B matched the 14B (100% of easy ones)</div></div>
       <div class="stat rv"><div class="n">4.7–11×</div><div class="c">faster on the cheap tier (CPU → GPU)</div></div>
@@ -271,7 +271,7 @@
         <div class="sbar"><i class="neg" data-w="12"></i></div><div class="sval neg">−7%</div></div>
     </div>
     <p class="rv" style="margin-top:22px;color:var(--ink2);font-size:15px">
-      <b style="color:var(--green-txt)">Live on a cluster</b> — vs a plain proxy that sends every
+      <b style="color:var(--green-txt)">Live on a rented node</b> — vs a plain proxy that sends every
       call to the strong model, Frugal made <b>half</b> the strong-model calls:
       <b style="color:var(--green-txt)">−53.9% cost</b> and <b style="color:var(--green-txt)">−32.5%
       latency</b> on the same 12 prompts. (Cloud-price run needs your keys.)</p>
@@ -423,16 +423,19 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
           <a href="https://github.com/SRKRZ23/frugal/fork" target="_blank" rel="noopener">Fork</a>
           <a href="https://github.com/SRKRZ23/frugal/archive/refs/heads/main.zip" target="_blank" rel="noopener">Download</a>
         </div></div>
-      <div class="inv rv"><h3>◆ Companies</h3>
-        <p>Open to <b>acquisition, investment, and partnership.</b> Sardor builds on-prem AI
-          infrastructure; Frugal is one piece of a larger cost-efficiency stack.</p>
+      <div class="inv rv"><h3>◆ Companies & investors</h3>
+        <p>Open to <b>angel investment</b>, <b>non-refundable grants</b>, partnership, and
+          <b>acquisition / acquihire</b> — the Wang / Suleyman / Shazeer pattern (team + IP). Frugal and
+          <a href="https://github.com/SRKRZ23/repomind-v3" target="_blank" rel="noopener">REPOMIND</a> are
+          one on-prem, cost-efficient-inference thesis — I'd bring both.</p>
         <div class="acts">
-          <a class="primary" href="mailto:razikovsardor1@gmail.com?subject=Frugal%20—%20partnership%2Finvestment">Talk to Sardor</a>
+          <a class="primary" href="mailto:razikovsardor1@gmail.com?subject=Frugal%20—%20investment%2Facquisition">Talk to Sardor</a>
           <a href="https://linkedin.com/in/sardor-razikov-569a5327b" target="_blank" rel="noopener">LinkedIn</a>
         </div></div>
-      <div class="inv rv"><h3>◆ Hardware & backing</h3>
-        <p>Built and benchmarked on modest hardware. <b>Professional GPU / compute sponsorship</b> or
-          community backing accelerates the evals and the roadmap.</p>
+      <div class="inv rv"><h3>◆ Hardware & grants</h3>
+        <p>Built and benchmarked solo on <b>rented, modest hardware</b> — that's the ceiling.
+          <b>GPU / accelerator sponsorship</b> (AMD ROCm-first) or a <b>non-refundable grant</b> takes the
+          benchmarks broad, human-graded and public.</p>
         <div class="acts">
           <a class="primary" href="mailto:razikovs777@gmail.com?subject=Frugal%20—%20hardware%2Fbacking">Sponsor hardware</a>
           <a href="mailto:razikovsardor1@gmail.com?subject=Frugal%20—%20support">Support</a>
@@ -493,7 +496,7 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
     [q('.head .eyebrow',4),'Не верь числам'],[q('.head h2',4),'Воспроизведи любое утверждение за 10 секунд.'],
     [q('.head .eyebrow',5),'Участвуй'],[q('.head h2',5),'Пользуйся, поддержи, строй на этом.'],
     [q('.head .eyebrow',6),'Автор'],
-    [q('.head p',0),'Оценено LLM-судьёй на реальном кластере. Маленькая модель, большая модель, честный вердикт.'],
+    [q('.head p',0),'Оценено LLM-судьёй на арендованной ноде. Маленькая модель, большая модель, честный вердикт.'],
     [q('.head p',1),'Экономия против отправки всего на сильную модель. 500 вход / 300 выход токенов; 17% сложных промптов эскалируют (замерено). Меняй входные данные и перегони cost_model.py.'],
     [q('.head p',2),'Ключи не нужны. Работает на детерминированном mock-провайдере; подставь свои модели когда угодно.'],
     [q('.head p',3),'Frugal — open-source и собран независимо. Каждая звезда, форк и issue двигают его вперёд.'],
@@ -519,8 +522,8 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
     [q('.mod p',7),'OpenAI-совместимый прокси: meter, budget, route.'],
     [q('.mod p',8),'Заранее говорит, окупится ли пара cheap/frontier.'],
     [q('.inv h3',0),'◆ Разработчики'],[q('.inv p',0),'Ставь звезду, пользуйся, форкай, делись. Открой issue, пришли PR, расскажи коллеге. Контрибьюции и фидбэк — топливо.'],
-    [q('.inv h3',1),'◆ Компании'],[q('.inv p',1),'Открыт к <b>acquisition, инвестициям и партнёрству.</b> Sardor строит on-prem AI-инфраструктуру; Frugal — часть большего cost-efficiency стека.'],
-    [q('.inv h3',2),'◆ Железо и поддержка'],[q('.inv p',2),'Собрано и замерено на скромном железе. <b>Профессиональное GPU / compute-спонсорство</b> или поддержка сообщества ускорят evals и roadmap.'],
+    [q('.inv h3',1),'◆ Компании и инвесторы'],[q('.inv p',1),'Открыт к <b>ангельским инвестициям</b>, <b>невозвратным грантам</b>, партнёрству и <b>acquisition / acquihire</b> — паттерн Wang / Suleyman / Shazeer (команда + IP). Frugal и <a href="https://github.com/SRKRZ23/repomind-v3" target="_blank" rel="noopener">REPOMIND</a> — единый тезис про on-prem, cost-эффективный инференс; принесу оба.'],
+    [q('.inv h3',2),'◆ Железо и гранты'],[q('.inv p',2),'Собрано и замерено в одиночку на <b>арендованном, скромном железе</b> — это потолок. <b>Спонсорство GPU / ускорителей</b> (AMD ROCm в первую очередь) или <b>невозвратный грант</b> выведут бенчмарки в широкие, оценённые человеком и открытые.'],
     [q('.author h3'),'Sardor Razikov — независимый AI/ML-инженер'],
     [q('.author p'),'Строитель из Ташкента, Узбекистан. On-prem LLM-инфраструктура, cost-эффективный инференс, сжатие. Frugal продуктизирует cost-routing-слой из его проекта REPOMIND. Открыт к acquisition, инвестициям, партнёрству и спонсорству железа.'],
     [q('footer p'),'Frugal — гоняй AI-агентов дёшево, локально и с проверкой. © 2026 Sardor Razikov.'],
