@@ -96,7 +96,7 @@
 </style>
 </head>
 <body>
-<div class="count"><span id="cur">1</span> / 12</div>
+<div class="count"><span id="cur">1</span> / 14</div>
 <button class="tbtn" id="lang" style="right:78px">RU</button>
 <button class="tbtn" id="theme">theme</button>
 
@@ -105,10 +105,10 @@
   <!-- 1 title -->
   <section class="slide"><div class="inner">
     <div class="logo"><svg width="30" height="30" viewBox="0 0 26 26"><polyline points="2,7 9,11 14,9 23,20" fill="none" stroke="var(--green)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="20" r="2.6" fill="var(--green)"/></svg>frugal</div>
-    <h1 style="margin-top:34px">Run AI agents<br><span class="a">cheap, local, verified.</span></h1>
-    <p class="sub">The open-source layer that meters every model call, routes the cheap/local model
+    <h1 style="margin-top:34px" data-ru='Гоняй AI-агентов<br><span class="a">дёшево, локально, с проверкой.</span>'>Run AI agents<br><span class="a">cheap, local, verified.</span></h1>
+    <p class="sub" data-ru='Open-source слой, который считает каждый вызов модели, сначала шлёт дешёвую/локальную модель и эскалирует только когда реальная проверка этого требует.'>The open-source layer that meters every model call, routes the cheap/local model
       first, and escalates only when a real check requires it.</p>
-    <p class="sub muted" style="font-size:16px;margin-top:26px">Sardor Razikov · Apache-2.0 · runs offline</p>
+    <p class="sub muted" style="font-size:16px;margin-top:26px" data-ru='Sardor Razikov · Apache-2.0 · работает офлайн'>Sardor Razikov · Apache-2.0 · runs offline</p>
     <p class="sub" style="font-size:15px;margin-top:14px">
       <a href="https://frugal-cost-router.netlify.app" target="_blank" rel="noopener">frugal-cost-router.netlify.app</a>
       &nbsp;·&nbsp;
@@ -117,17 +117,17 @@
 
   <!-- 2 problem -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">The problem</div>
-    <h2>Agents burn frontier tokens on trivial work.</h2>
-    <p class="sub">Every token has a price, and agentic workloads send the bill soaring. Most calls
+    <div class="eyebrow" data-ru='Проблема'>The problem</div>
+    <h2 data-ru='Агенты жгут frontier-токены на тривиальной работе.'>Agents burn frontier tokens on trivial work.</h2>
+    <p class="sub" data-ru='У каждого токена есть цена, и агентные нагрузки взвинчивают счёт. Большинству вызовов не нужна самая большая модель — но никто это за тебя не решает и не доказывает, что дешёвого ответа хватило.'>Every token has a price, and agentic workloads send the bill soaring. Most calls
       don't need the biggest model — but nothing decides that for you, and nothing proves the cheap
       answer was good enough.</p>
   </div></section>
 
   <!-- 3 solution -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">The solution</div>
-    <h2>Meter → route → verify → cache.</h2>
+    <div class="eyebrow" data-ru='Решение'>The solution</div>
+    <h2 data-ru='Считай → маршрутизируй → проверяй → кэшируй.'>Meter → route → verify → cache.</h2>
     <div class="grid2">
       <div class="card"><div class="k"><b>Meter</b></div><p>Know the exact $/token of every call. Thread-safe hard budget cap.</p></div>
       <div class="card"><div class="k"><b>Route</b></div><p>Cheap/local model first; escalate only when confidence is low.</p></div>
@@ -138,33 +138,33 @@
 
   <!-- 4 how -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">How it works</div>
-    <h2>Escalate only when the cheap answer isn't trustworthy.</h2>
+    <div class="eyebrow" data-ru='Как это работает'>How it works</div>
+    <h2 data-ru='Эскалируй только когда дешёвому ответу нельзя доверять.'>Escalate only when the cheap answer isn't trustworthy.</h2>
     <div class="flow">
       <span class="step green">cheap / local</span><span class="arrow">→</span>
       <span class="step">confidence check</span><span class="arrow">→</span>
       <span class="step">escalate <span class="muted">(only if needed)</span></span>
     </div>
-    <p class="sub">Confidence is pluggable — a near-free <b>logprob</b> signal, a one-call verifier, or
+    <p class="sub" data-ru='Confidence подключаемый — почти-бесплатный <b>logprob</b>-сигнал, verifier в один вызов или self-consistency. И Frugal предупреждает, когда пара слишком близка по цене, чтобы вообще каскадить.'>Confidence is pluggable — a near-free <b>logprob</b> signal, a one-call verifier, or
       self-consistency. And Frugal warns you when a pair is too close in price to bother.</p>
   </div></section>
 
   <!-- 5 proof -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Measured, not asserted</div>
-    <h2>A 3B model matched a 14B on most tasks.</h2>
+    <div class="eyebrow" data-ru='Замерено, не заявлено'>Measured, not asserted</div>
+    <h2 data-ru='3B-модель не хуже 14B на большинстве задач.'>A 3B model matched a 14B on most tasks.</h2>
     <div class="grid3">
       <div class="card"><div class="n">83%</div><div class="c">of hard tasks the 3B matched the 14B (100% of easy)</div></div>
       <div class="card"><div class="n">4.7–11×</div><div class="c">faster on the cheap tier (CPU → GPU)</div></div>
       <div class="card"><div class="n">~17%</div><div class="c">of hard prompts escalate — what routing catches</div></div>
     </div>
-    <p class="sub muted" style="font-size:15px">LLM-judged, on a real cluster. Reproduce with one command.</p>
+    <p class="sub muted" style="font-size:15px" data-ru='Оценено LLM-судьёй, на реальном кластере. Воспроизведи одной командой.'>LLM-judged, on a real cluster. Reproduce with one command.</p>
   </div></section>
 
   <!-- 6 savings -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Real prices · July 2026</div>
-    <h2>What it saves.</h2>
+    <div class="eyebrow" data-ru='Реальные цены · июль 2026'>Real prices · July 2026</div>
+    <h2 data-ru='Сколько экономит.'>What it saves.</h2>
     <table>
       <thead><tr><th>Cheap → frontier</th><th>Confidence</th><th style="text-align:right">Saved</th></tr></thead>
       <tbody>
@@ -173,17 +173,63 @@
         <tr><td>Claude Haiku → Sonnet <span class="muted">(3×)</span></td><td>self-consistency</td><td class="n"><span class="tn">−7%</span></td></tr>
       </tbody>
     </table>
-    <p class="sub" style="font-size:16px;margin-top:20px"><b style="color:var(--green-txt)">Live on a
+    <p class="sub" style="font-size:16px;margin-top:20px" data-ru='<b style="color:var(--green-txt)">Live на кластере:</b> против обычного прокси (всё→strong) Frugal сделал вдвое меньше сильных вызовов — <b style="color:var(--green-txt)">−53.9% стоимости, −32.5% латентности</b> на тех же промптах.'><b style="color:var(--green-txt)">Live on a
       cluster:</b> vs a plain proxy (all→strong), Frugal made half the strong-model calls —
       <b style="color:var(--green-txt)">−53.9% cost, −32.5% latency</b> on the same prompts.</p>
-    <p class="sub muted" style="font-size:14px">~75–97% typical — the −7% row is honest: it can lose money.</p>
+    <p class="sub muted" style="font-size:14px" data-ru='~75–97% типично — строка −7% честная: он может терять деньги.'>~75–97% typical — the −7% row is honest: it can lose money.</p>
+  </div></section>
+
+  <!-- 7 enterprise · roster -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow" data-ru='Для enterprise · 2026'>For the enterprise · 2026</div>
+    <h2 data-ru='Токен-налог — это уже реальные деньги.'>The token-tax is real money now.</h2>
+    <table style="font-size:13.5px">
+      <thead><tr><th>Who's burning it</th><th>The 2026 fact</th></tr></thead>
+      <tbody>
+        <tr><td><b>Meta</b></td><td>AI capex $125–145B; ~$25B/qtr on inference silicon</td></tr>
+        <tr><td><b>Amazon</b></td><td>~$200B AI capex; Bedrock hosts Anthropic + Grok</td></tr>
+        <tr><td><b>Google</b></td><td>Gemini serves 1.3 quadrillion tokens / month</td></tr>
+        <tr><td><b>Microsoft</b></td><td>GitHub Copilot → token-metered billing ("meter shock")</td></tr>
+        <tr><td><b>xAI</b></td><td>Anthropic pays $1.25B/mo for Colossus; &gt;1M calls/day</td></tr>
+        <tr><td><b>Palantir</b></td><td>CEO: token pricing "broken" → air-gapped, no hosted API</td></tr>
+        <tr><td><b>Salesforce</b></td><td>Agentforce moved to resolution-based pricing</td></tr>
+        <tr><td><b>Uber</b></td><td>Burned its whole 2026 AI-coding budget by April</td></tr>
+        <tr><td><b>Klarna</b></td><td>AI assistant: 2.3M conversations / month</td></tr>
+        <tr><td><b>Fortune-500 firm</b></td><td>$500M on Claude in a single month, no caps</td></tr>
+        <tr><td><b>Industry</b></td><td>Inference = 85% of the AI budget; spend still doubling</td></tr>
+      </tbody>
+    </table>
+    <p class="sub muted" style="font-size:13.5px;margin-top:12px" data-ru='Цены на токены упали ~280× за два года, но суммарный спенд вырос ~320% — агентный объём взорвался. Дешёвые токены тебя не спасают; спасает маршрутизация того, чему не нужна большая модель.'>Token prices fell ~280× in two years, yet total spend rose ~320% — agentic volume exploded. Cheaper tokens don't save you; routing what doesn't need the big model does.</p>
+  </div></section>
+
+  <!-- 8 enterprise · savings at scale -->
+  <section class="slide"><div class="inner">
+    <div class="eyebrow" data-ru='Экономия по масштабу спенда'>What Frugal saves, by spend</div>
+    <h2 data-ru='От $100k до $50M в месяц — и кейсы, под которые он создан.'>From $100k to $50M/mo — and the cases it's built for.</h2>
+    <div class="grid2">
+      <table style="font-size:15px">
+        <thead><tr><th>Monthly inference spend</th><th style="text-align:right">Frugal saves / year</th></tr></thead>
+        <tbody>
+          <tr><td>$100,000</td><td class="n"><span class="pos">$0.6–0.9M</span></td></tr>
+          <tr><td>$1,000,000</td><td class="n"><span class="pos">$6–9M</span></td></tr>
+          <tr><td>$10,000,000</td><td class="n"><span class="pos">$60–90M</span></td></tr>
+          <tr><td>$50,000,000 <span class="muted">(F-500 tier)</span></td><td class="n"><span class="pos">$300–450M</span></td></tr>
+        </tbody>
+      </table>
+      <div>
+        <div class="card"><div class="k" data-ru='Кейс Uber'>Uber pattern</div><p data-ru='Жёсткий бюджет-cap + reserve() → бюджет нельзя молча слить; маршрутизация растягивает его в 2–4×.'>Hard budget cap + reserve() → budget can't be blown silently; routing stretches it 2–4×.</p></div>
+        <div class="card"><div class="k" data-ru='Palantir / air-gapped'>Palantir / air-gapped</div><p data-ru='Local-first маршрутизация держит приватную работу на твоих GPU (0 утечек); эскалация только когда реально нужно.'>Local-first routing keeps private work on your GPUs (0 leaks); escalate only when truly needed.</p></div>
+        <div class="card"><div class="k" data-ru='Поддержка масштаба Klarna'>Klarna-scale support</div><p data-ru='2.3M чатов/мес → дешёвый тир на простых ходах; ~$210k/год моделируемой экономии только на этом объёме.'>2.3M chats/mo → cheap tier for simple turns; ~$210k/yr modeled saving on that volume alone.</p></div>
+      </div>
+    </div>
+    <p class="sub muted" style="font-size:13px;margin-top:12px" data-ru='Смоделировано на публичных ценах API 2026 и консервативной доле маршрутизируемого; твой микс определяет результат. Воспроизвести: python benchmarks/cost_model.py. Не аффилирован ни с одной названной компанией.'>Modeled at published 2026 API prices and a conservative routable share; your mix determines the result. Reproduce: python benchmarks/cost_model.py. Not affiliated with any company named.</p>
   </div></section>
 
   <!-- 7 honesty -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow" style="color:var(--neg)">Where it does not pay off</div>
-    <h2>The tool tells you when to say no.</h2>
-    <p class="sub">Cascade + a re-sampling check <b>loses money</b> when the cheap tier isn't much
+    <div class="eyebrow" style="color:var(--neg)" data-ru='Где не окупается'>Where it does not pay off</div>
+    <h2 data-ru='Инструмент сам говорит, когда сказать нет.'>The tool tells you when to say no.</h2>
+    <p class="sub" data-ru='Каскад + ре-сэмплинг <b>теряет деньги</b>, когда дешёвый тир не сильно дешевле. Правило: каскадь только при разрыве цен <b>≥ ~10×</b>, либо бесплатный logprob-сигнал, либо локальный тир. Frugal это считает и <span style="color:var(--green-txt)">предупреждает</span> — мы публикуем, где НЕ работает, а не только где работает.'>Cascade + a re-sampling check <b>loses money</b> when the cheap tier isn't much
       cheaper. The rule: cascade only at a <b>≥ ~10× price gap</b>, or use a free logprob signal, or
       a local tier. Frugal computes this and <span style="color:var(--green-txt)">warns you</span> —
       we publish where it doesn't work, not just where it does.</p>
@@ -191,22 +237,22 @@
 
   <!-- 8 who -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Who benefits</div>
-    <h2>If you pay for tokens, this is for you.</h2>
+    <div class="eyebrow" data-ru='Кому выгодно'>Who benefits</div>
+    <h2 data-ru='Если платишь за токены — это для тебя.'>If you pay for tokens, this is for you.</h2>
     <div class="grid3">
-      <div class="card"><div class="k">Indie & startups</div><p>Cut 75–97% of inference spend; hard budget caps per tenant.</p></div>
-      <div class="card"><div class="k">Enterprises</div><p>Private prompts stay on-prem (0 leaks); audit every $/token.</p></div>
-      <div class="card"><div class="k">Agent builders</div><p>Agents that self-throttle: trivial steps cheap, hard ones escalate.</p></div>
-      <div class="card"><div class="k">Researchers</div><p>Reproducible model-vs-model evals with an LLM judge on your cluster.</p></div>
-      <div class="card"><div class="k">Platform / DevOps</div><p>OpenAI-compatible budget gateway + MCP cost telemetry.</p></div>
-      <div class="card"><div class="k">Vibecoders</div><p>One command, no keys, cheap by default.</p></div>
+      <div class="card"><div class="k" data-ru='Indie и стартапы'>Indie & startups</div><p data-ru='Режь 75–97% спенда на инференс; жёсткие бюджет-cap на каждого арендатора.'>Cut 75–97% of inference spend; hard budget caps per tenant.</p></div>
+      <div class="card"><div class="k" data-ru='Enterprise'>Enterprises</div><p data-ru='Приватные промпты остаются on-prem (0 утечек); аудит каждого $/токена.'>Private prompts stay on-prem (0 leaks); audit every $/token.</p></div>
+      <div class="card"><div class="k" data-ru='Разработчики агентов'>Agent builders</div><p data-ru='Агенты, которые сами себя тормозят: тривиальные шаги дёшево, сложные — эскалация.'>Agents that self-throttle: trivial steps cheap, hard ones escalate.</p></div>
+      <div class="card"><div class="k" data-ru='Исследователи'>Researchers</div><p data-ru='Воспроизводимые модель-против-модели оценки с LLM-судьёй на твоём кластере.'>Reproducible model-vs-model evals with an LLM judge on your cluster.</p></div>
+      <div class="card"><div class="k" data-ru='Платформы / DevOps'>Platform / DevOps</div><p data-ru='OpenAI-совместимый бюджет-шлюз + MCP-телеметрия стоимости.'>OpenAI-compatible budget gateway + MCP cost telemetry.</p></div>
+      <div class="card"><div class="k" data-ru='Vibecoder-ы'>Vibecoders</div><p data-ru='Одна команда, без ключей, дёшево по умолчанию.'>One command, no keys, cheap by default.</p></div>
     </div>
   </div></section>
 
   <!-- 9 product -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">One package · nine parts</div>
-    <h2>Everything reads one shared cost meter.</h2>
+    <div class="eyebrow" data-ru='Один пакет · девять частей'>One package · nine parts</div>
+    <h2 data-ru='Всё читает один общий cost-meter.'>Everything reads one shared cost meter.</h2>
     <div class="mods">
       <div class="mod"><div class="n">frugal.<b>meter</b></div><p>cost, budget, zero-overshoot reserve</p></div>
       <div class="mod"><div class="n">frugal.<b>route</b></div><p>cascade + logprob/verifier confidence</p></div>
@@ -222,8 +268,8 @@
 
   <!-- 10 robustness -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Stress-tested, not just shipped</div>
-    <h2>Boring where infra should be boring.</h2>
+    <div class="eyebrow" data-ru='Застресс-тестировано, не просто выложено'>Stress-tested, not just shipped</div>
+    <h2 data-ru='Скучно там, где инфра должна быть скучной.'>Boring where infra should be boring.</h2>
     <div class="grid3">
       <div class="card"><div class="n">56</div><div class="c">tests · stress + deep + property-fuzz + FastAPI-concurrency suites</div></div>
       <div class="card"><div class="n">7 bugs</div><div class="c">found &amp; fixed by our own tests (thread-safety, O(n²) meter, unicode, broken HTTP layer)</div></div>
@@ -233,8 +279,8 @@
 
   <!-- 11 roadmap -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Roadmap</div>
-    <h2>Honest about what's next.</h2>
+    <div class="eyebrow" data-ru='Roadmap'>Roadmap</div>
+    <h2 data-ru='Честно о том, что дальше.'>Honest about what's next.</h2>
     <div class="grid2">
       <div class="card"><div class="k">Shipped</div><p>logprob confidence · response cache · streaming gateway · economics guard · zero-overshoot budget.</p></div>
       <div class="card"><div class="k">Next</div><p>broader human-graded evals · live LiteLLM/Portkey bake-off · more provider adapters · a persistent metrics store.</p></div>
@@ -243,9 +289,9 @@
 
   <!-- 12 ask -->
   <section class="slide"><div class="inner">
-    <div class="eyebrow">Get involved</div>
-    <h2>Use it. Back it. Build on it.</h2>
-    <p class="sub">Open to <b>acquisition, investment, partnership,</b> and <b>hardware sponsorship</b>.
+    <div class="eyebrow" data-ru='Участвуй'>Get involved</div>
+    <h2 data-ru='Пользуйся. Поддержи. Строй на этом.'>Use it. Back it. Build on it.</h2>
+    <p class="sub" data-ru='Открыт к <b>acquisition, инвестициям, партнёрству</b> и <b>спонсорству железа</b>. Frugal — часть on-prem AI cost-efficiency стека, который я строю в открытую.'>Open to <b>acquisition, investment, partnership,</b> and <b>hardware sponsorship</b>.
       Frugal is one piece of an on-prem AI cost-efficiency stack I'm building in the open.</p>
     <div style="margin-top:22px;font-family:var(--disp);font-weight:700;font-size:19px">Sardor Razikov
       <span class="muted" style="font-weight:400">— independent AI/ML engineer, Tashkent</span></div>
@@ -267,39 +313,18 @@
 <div class="hud"><div class="dots" id="dots"></div><span class="muted">← → to navigate</span></div>
 
 <script>
-/* EN⇄RU toggle for the deck — translates eyebrows, headings and subs (the narrative). */
+/* EN⇄RU toggle — robust, attribute-driven: every element with data-ru swaps innerHTML. */
 (function(){
-  var EN=null, cur='en';
-  var E=['Проблема','Решение','Как это работает','Замерено, не заявлено','Реальные цены · июль 2026',
-    'Где не окупается','Кому выгодно','Один пакет · девять частей','Застресс-тестировано, не просто выложено',
-    'Roadmap','Участвуй'];
-  var H=['Гоняй AI-агентов<br><span class="a">дёшево, локально, с проверкой.</span>',
-    'Агенты жгут frontier-токены на тривиальной работе.','Считай → маршрутизируй → проверяй → кэшируй.',
-    'Эскалируй только когда дешёвому ответу нельзя доверять.','3B-модель не хуже 14B на большинстве задач.',
-    'Сколько экономит.','Инструмент сам говорит, когда сказать нет.','Если платишь за токены — это для тебя.',
-    'Всё читает один общий cost-meter.','Скучно там, где инфра должна быть скучной.','Честно о том, что дальше.',
-    'Пользуйся. Поддержи. Строй на этом.'];
-  var S=['Open-source слой, который считает каждый вызов модели, сначала шлёт дешёвую/локальную модель и эскалирует только когда реальная проверка этого требует.',
-    'Sardor Razikov · Apache-2.0 · работает офлайн',
-    'У каждого токена есть цена, и агентные нагрузки взвинчивают счёт. Большинству вызовов не нужна самая большая модель — но никто это за тебя не решает и не доказывает, что дешёвого ответа хватило.',
-    'Confidence подключаемый — почти-бесплатный <b>logprob</b>-сигнал, verifier в один вызов или self-consistency. И Frugal предупреждает, когда пара слишком близка по цене, чтобы вообще каскадить.',
-    'Оценено LLM-судьёй, на реальном кластере. Воспроизведи одной командой.',
-    '<b style="color:var(--green-txt)">Live на кластере:</b> против обычного прокси (всё→strong) Frugal сделал вдвое меньше сильных вызовов — <b style="color:var(--green-txt)">−53.9% стоимости, −32.5% латентности</b> на тех же промптах.',
-    '~75–97% типично — строка −7% честная: он может терять деньги.',
-    'Каскад + ре-сэмплинг <b>теряет деньги</b>, когда дешёвый тир не сильно дешевле. Правило: каскадь только при разрыве цен ≥ ~10×, либо бесплатный logprob-сигнал, либо локальный тир. Frugal это считает и предупреждает — мы публикуем, где НЕ работает, а не только где работает.',
-    'Открыт к <b>acquisition, инвестициям, партнёрству</b> и <b>спонсорству железа</b>. Frugal — часть on-prem AI cost-efficiency стека, который я строю в открытую.'];
-  function apply(lang){
-    var eys=document.querySelectorAll('.eyebrow'), hs=document.querySelectorAll('h1,h2'), ss=document.querySelectorAll('.sub');
-    if(!EN){EN={e:[],h:[],s:[]};
-      eys.forEach(function(x){EN.e.push(x.innerHTML)}); hs.forEach(function(x){EN.h.push(x.innerHTML)}); ss.forEach(function(x){EN.s.push(x.innerHTML)});}
-    eys.forEach(function(x,i){ if(E[i]!==undefined) x.innerHTML = lang==='ru'?E[i]:EN.e[i]; });
-    hs.forEach(function(x,i){ if(H[i]!==undefined) x.innerHTML = lang==='ru'?H[i]:EN.h[i]; });
-    ss.forEach(function(x,i){ if(S[i]!==undefined) x.innerHTML = lang==='ru'?S[i]:EN.s[i]; });
+  var cur='en', btn=document.getElementById('lang');
+  function set(lang){
+    document.querySelectorAll('[data-ru]').forEach(function(el){
+      if(!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = lang==='ru' ? el.getAttribute('data-ru') : el.getAttribute('data-en');
+    });
+    cur=lang; if(btn) btn.textContent = lang==='ru'?'EN':'RU';
   }
-  document.getElementById('lang').addEventListener('click',function(){
-    cur=cur==='en'?'ru':'en'; apply(cur); this.textContent=cur==='en'?'RU':'EN';
-  });
-  if(new URLSearchParams(location.search).get('lang')==='ru'){ apply('ru'); cur='ru'; document.getElementById('lang').textContent='EN'; }
+  if(btn) btn.addEventListener('click', function(){ set(cur==='en'?'ru':'en'); });
+  if(new URLSearchParams(location.search).get('lang')==='ru') set('ru');
 })();
 (function(){
   var root=document.documentElement;

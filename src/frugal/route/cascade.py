@@ -74,7 +74,7 @@ def cascade(
 ) -> RouteResult:
     conf = confidence_fn or _default_confidence
     # If a re-sampling confidence (self-consistency) is used, check it will actually pay off
-    # for this ladder's price gap and warn once if not (see frugal.economics / BUSINESS_CASE.md).
+    # for this ladder's price gap and warn once if not (see frugal.economics).
     if warn_economics and getattr(conf, "_is_resampling", False) and len(ladder) >= 2:
         try:
             from ..economics import check_and_warn

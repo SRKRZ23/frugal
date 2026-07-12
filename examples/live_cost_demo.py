@@ -65,7 +65,7 @@ def live():
     for block in frames():
         print("\x1b[H" + block, flush=True)
         time.sleep(0.12)
-    print("  ▲ reproduce: python benchmarks/cost_model.py   ·   see BUSINESS_CASE.md\n")
+    print("  ▲ reproduce: python benchmarks/cost_model.py\n")
 
 
 def cast():

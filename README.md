@@ -49,7 +49,7 @@ single shared cost **Meter**.
 
 `python examples/live_cost_demo.py` (animated) or `--cast` to make an
 [asciinema](https://asciinema.org) recording (`examples/demo.cast`). Real prices;
-the exact savings depend on your workload and confidence signal — see [BUSINESS_CASE.md](BUSINESS_CASE.md).
+the exact savings depend on your workload and confidence signal — see the [savings breakdown on the live site](https://frugal-cost-router.netlify.app/#savings).
 
 ## Verify it yourself in 10 seconds
 
@@ -60,7 +60,7 @@ pip install -e . && frugal demo        # end-to-end, offline, ~2s
 python benchmarks/run_all.py           # the offline benchmark table
 python benchmarks/stress_test.py       # 8 dims: thread-safety, ReDoS, fuzz, memory
 python benchmarks/stress_deep.py       # 6 adversarial dims: hostile inputs, races (diamond)
-python benchmarks/cost_model.py        # real-price savings math (see BUSINESS_CASE.md)
+python benchmarks/cost_model.py        # real-price savings math (reproduce the numbers)
 ```
 
 Have models on a cluster/Ollama? Re-run the exact model comparison on **your** models and
@@ -138,7 +138,7 @@ reproduce with `python benchmarks/run_all.py` (writes [`benchmarks/RESULTS.md`](
 
 | What | Result | Notes |
 |---|---|---|
-| **Cost saved by routing** vs frontier-only | **−92.1%** on a 26-prompt mix (⚠️ **demo prices**) | exact cost math on the mock price table. **Real-price savings are ~75–91% (cloud) / up to ~97% (local)** — and it can even *lose* money on small price gaps. Full honest numbers: [BUSINESS_CASE.md](BUSINESS_CASE.md) |
+| **Cost saved by routing** vs frontier-only | **−92.1%** on a 26-prompt mix (⚠️ **demo prices**) | exact cost math on the mock price table. **Real-price savings are ~75–91% (cloud) / up to ~97% (local)** — and it can even *lose* money on small price gaps. Full honest numbers: [live savings breakdown](https://frugal-cost-router.netlify.app/#savings) (or run `cost_model.py`) |
 | **Private-prompt leaks** to cloud | **0 / 6** | privacy invariant: `private`-tagged prompts always stay local |
 | Local share of a mixed workload | **96.2%** kept off the paid tier | complexity heuristic favours the cheap tier (tunable) |
 | Hallucination-flag precision / recall | **1.0 / 1.0** on the labelled set | heuristic gate; small set |
@@ -293,7 +293,9 @@ Runnable stories under [`examples/scenarios/`](examples/scenarios/), each provin
 Inference is now **~85% of the enterprise AI budget**. Uber burned its whole 2026 AI-coding budget by
 April; one firm spent **$500M on Claude in a month**; Palantir's CEO calls token pricing "broken."
 Frugal routes around it. At **$10M/mo** inference spend that's a modeled **$60–90M/yr** saved.
-→ **[ENTERPRISE.md](ENTERPRISE.md)** (the roster + math, with sources).
+→ Full roster (Meta · Amazon · Google · xAI · Uber · Palantir · Klarna …), the savings-by-spend table,
+and the situations it's built for: **[the Enterprise section on the live site](https://frugal-cost-router.netlify.app/#enterprise)**
+· **[interactive deck](https://frugal-cost-router.netlify.app/deck.html)**.
 
 ## Also in this repo
 

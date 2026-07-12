@@ -1,6 +1,6 @@
 """Reproducible cost / savings model for Frugal — REAL provider prices, honest math.
 
-Every number in BUSINESS_CASE.md comes from running this. It uses:
+Every real-price savings number comes from running this. It uses:
   • real list prices (USD / 1M tokens, verified 2026-07 — see PRICES, edit freely)
   • Frugal's MEASURED routing behaviour (easy prompts stay cheap; ~17% of hard prompts
     escalate — from benchmarks/RESULTS_MODELS_HARD.md)

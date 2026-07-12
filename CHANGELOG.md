@@ -27,7 +27,7 @@ First open-source release of Frugal — a drop-in cost/routing/eval layer for LL
 - 56 tests; 8-dimension stress suite (throughput, thread-safety, ReDoS, fuzz, memory).
 - Reproducible model-vs-model benchmarks (real cluster): 3B matched 14B on 83% of hard tasks
   (100% of easy) at ~4.7×/~11× speed.
-- Real-price business case (`BUSINESS_CASE.md`), honest weakness audit (`WEAKNESSES.md`).
+- Real-price business case (now on the live site's Savings + Enterprise sections), honest weakness audit (`WEAKNESSES.md`).
 
 **Honesty**
 - **Seven** bugs found and fixed by our own pressure / property / concurrency tests: budget

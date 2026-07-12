@@ -53,7 +53,7 @@ def make_logprob_confidence(neutral: float = 0.7):
     (no extra call). confidence = exp(avg_logprob) in (0,1]; high log-prob = confident.
     Falls back to `neutral` if the backend didn't return log-probs.
 
-    This is the cheapest signal — probe_mult = 1, so it saves the most (BUSINESS_CASE.md)."""
+    This is the cheapest signal — probe_mult = 1, so it saves the most."""
     import math
 
     def _conf(provider: Provider, response: LLMResponse, prompt: str) -> float:

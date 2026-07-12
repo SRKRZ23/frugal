@@ -1,6 +1,7 @@
 """Economics guard — will cascade + your confidence signal actually SAVE money?
 
-Grounded in BUSINESS_CASE.md: a re-sampling confidence signal (self-consistency)
+Grounded in the real-price cost model (benchmarks/cost_model.py): a re-sampling
+confidence signal (self-consistency)
 multiplies the cheap-tier cost, so on a small price gap it can cost MORE than
 frontier-only. This module computes that up front and warns — a config that can't
 save is one to flag, not ship.
@@ -54,7 +55,7 @@ def check_and_warn(cheap_model: str, frontier_model: str, confidence: str = "sel
             f"'{confidence}' (x{r['probe_mult']} cheap probes/request) is projected to save only "
             f"{r['saved_pct']}% (price ratio {r['price_ratio']}x). The probing eats the margin — "
             f"use 'free'/logprob confidence, a LOCAL cheap tier ($0/token → probing is free), or "
-            f"don't cascade this pair. See BUSINESS_CASE.md.",
+            f"don't cascade this pair.",
             stacklevel=2,
         )
     return r

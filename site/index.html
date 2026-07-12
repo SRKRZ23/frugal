@@ -201,6 +201,7 @@
       <a href="#who">Who it's for</a>
       <a href="#involve">Get involved</a>
       <a href="deck.html">Deck</a>
+      <a href="#enterprise">Enterprise</a>
       <a href="https://github.com/SRKRZ23/frugal" target="_blank" rel="noopener" class="cta">★ Star on GitHub</a>
       <button class="tbtn" id="lang">RU</button>
       <button class="tbtn" id="theme">Theme</button>
@@ -287,6 +288,71 @@
         or use a near-free logprob signal, or a local ($0/token) tier. Frugal computes this and
         <code>warns</code> instead of quietly overcharging.</p>
     </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ENTERPRISE -->
+  <section id="enterprise">
+    <style>
+      #enterprise .eroster{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:8px}
+      #enterprise .ecard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--panel)}
+      #enterprise .ecard b{color:var(--green-txt);font-family:var(--disp);font-size:15px}
+      #enterprise .ecard p{margin:4px 0 0;color:var(--ink2);font-size:13.5px;line-height:1.4}
+      #enterprise .etable{margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+      #enterprise .etable .er{display:flex;justify-content:space-between;align-items:center;padding:13px 20px;border-top:1px solid var(--line)}
+      #enterprise .etable .eh{background:var(--panel2);border-top:0;font-family:var(--disp);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+      #enterprise .etable .er b{font-size:16px}
+      #enterprise .etable .er .sv{font-family:var(--disp);font-weight:700;color:var(--green-txt);font-size:17px}
+      #enterprise .ecases{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+      #enterprise .ecase{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--panel)}
+      #enterprise .ecase h4{margin:0;font-size:14px;color:var(--green-txt)}
+      #enterprise .ecase p{margin:6px 0 0;color:var(--ink2);font-size:13.5px;line-height:1.45}
+      #enterprise .ent-note{margin-top:18px;color:var(--muted);font-size:12.5px;line-height:1.5}
+    </style>
+    <div style="max-width:72ch;margin-bottom:22px">
+      <div class="eyebrow">For the enterprise · 2026</div>
+      <h2 style="font-size:clamp(25px,3.8vw,36px);margin-top:10px">The token-tax is real money now.</h2>
+      <p class="elead" style="color:var(--ink2);margin-top:12px;font-size:16px;line-height:1.55">Inference is now
+        <b style="color:var(--green-txt)">~85% of the enterprise AI budget</b>. Token prices fell ~280× in two
+        years, yet total spend rose ~320% — agentic volume exploded (10–20 calls per task, always-on agents).
+        Cheaper tokens don't save you; routing what doesn't need the big model does. Frugal is that control layer.</p>
+    </div>
+
+    <div class="eroster">
+      <div class="ecard"><b>Meta</b><p>AI capex $125–145B; ~$25B/qtr on short-lived inference silicon.</p></div>
+      <div class="ecard"><b>Amazon</b><p>~$200B AI capex 2026; Bedrock hosts Anthropic + Grok inference.</p></div>
+      <div class="ecard"><b>Google</b><p>Gemini serving 1.3 quadrillion tokens / month.</p></div>
+      <div class="ecard"><b>Microsoft</b><p>GitHub Copilot moved to token-metered billing — the June "meter shock".</p></div>
+      <div class="ecard"><b>xAI</b><p>Anthropic pays xAI $1.25B/month for Colossus compute; &gt;1M API calls/day.</p></div>
+      <div class="ecard"><b>Palantir</b><p>CEO: token pricing "completely broken" → air-gapped, no-hosted-API AI.</p></div>
+      <div class="ecard"><b>Oracle</b><p>OCI Enterprise AI; hosts Palantir Foundry / AIP inference.</p></div>
+      <div class="ecard"><b>Salesforce</b><p>Token costs forced Agentforce onto resolution-based pricing.</p></div>
+      <div class="ecard"><b>Uber</b><p>Burned its entire 2026 AI-coding budget by April (usage 32% → 84%).</p></div>
+      <div class="ecard"><b>Klarna</b><p>AI assistant: 2.3M conversations/month (~work of 850 agents).</p></div>
+      <div class="ecard"><b>A Fortune-500 firm</b><p>$500M on Claude in a single month — no spending caps.</p></div>
+      <div class="ecard"><b>Industry</b><p>Enterprise LLM spend doubling; inference = 85% of the AI budget.</p></div>
+    </div>
+
+    <div class="etable">
+      <div class="er eh"><span class="ent-lab0">Monthly inference spend</span><span class="ent-lab1">Frugal saves / year</span></div>
+      <div class="er"><b>$100,000</b><span class="sv">$0.6M – $0.9M</span></div>
+      <div class="er"><b>$1,000,000</b><span class="sv">$6M – $9M</span></div>
+      <div class="er"><b>$10,000,000</b><span class="sv">$60M – $90M</span></div>
+      <div class="er"><b>$50,000,000 <span style="color:var(--muted);font-weight:400">(Fortune-500 tier)</span></b><span class="sv">$300M – $450M</span></div>
+    </div>
+
+    <div class="ecases">
+      <div class="ecase"><h4 class="ecase-t">"Uber burned its budget by April"</h4><p class="ecase-p">Thread-safe hard budget cap + <code>reserve()</code> (refuse before spending) → the budget can't be blown silently; routing stretches it 2–4×.</p></div>
+      <div class="ecase"><h4 class="ecase-t">"$500M on Claude, no caps"</h4><p class="ecase-p">Exactly what the budget gateway prevents — every key/tenant gets a cap and a live $/token view via the MCP server.</p></div>
+      <div class="ecase"><h4 class="ecase-t">Palantir's air-gapped push</h4><p class="ecase-p">Local-first routing keeps private/simple work on your own GPUs (0 leaks, tested); escalate to a hosted frontier only when truly needed.</p></div>
+      <div class="ecase"><h4 class="ecase-t">Klarna-scale support</h4><p class="ecase-p">2.3M chats/mo ≈ 6.9M calls — most turns simple → cheap tier. Modeled saving ≈ $210k/yr on that volume alone.</p></div>
+    </div>
+
+    <p class="ent-note">Savings are modeled at published 2026 API prices and a conservative routable-share assumption
+      (we measure 75–91% on the cheap-tier fraction); your actual mix determines the result — reproduce with
+      <span class="disp">python benchmarks/cost_model.py</span>. Company facts are cited public reports; Frugal is
+      not affiliated with, or endorsed by, any company named.</p>
   </section>
 
   <hr class="divider">
@@ -400,7 +466,7 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
     <div class="fbadges">
       <span class="badge">Apache-2.0</span><span class="badge">Zero runtime deps</span>
       <span class="badge">Runs offline</span><span class="badge">MCP · on-prem · CI</span>
-      <span style="flex:1"></span><span>Built honest — see WEAKNESSES.md &amp; BUSINESS_CASE.md.</span>
+      <span style="flex:1"></span><span>Built honest — see WEAKNESSES.md.</span>
     </div>
     <p style="margin-top:16px">Frugal — run AI agents cheap, local, and verified. © 2026 Sardor Razikov.</p>
   </footer>
@@ -413,7 +479,7 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
   var EN=null, cur='en';
   function q(s,i){return document.querySelectorAll(s)[i||0];}
   function M(){return [
-    [q('.links a',0),'Экономия'],[q('.links a',1),'Кому подходит'],[q('.links a',2),'Участвуй'],[q('.links a',3),'Дека'],
+    [q('.links a',0),'Экономия'],[q('.links a',1),'Кому подходит'],[q('.links a',2),'Участвуй'],[q('.links a',3),'Дека'],[q('.links a',4),'Для бизнеса'],
     [q('.hero .eyebrow'),'Open-source · Роутинг стоимости LLM · Local-first · Проверено'],
     [q('.hero h1'),'Твои AI-агенты<br><span class="a">переплачивают.</span> Обойди это.'],
     [q('.hero .lead'),'Frugal считает каждый вызов модели, сначала шлёт дешёвую или локальную модель и эскалирует на сильную только когда реальная проверка уверенности этого требует — а затем доказывает качество в CI. Полностью офлайн, без API-ключей.'],
@@ -457,7 +523,21 @@ python benchmarks/cost_model.py          <span class="c"># your real-price savin
     [q('.inv h3',2),'◆ Железо и поддержка'],[q('.inv p',2),'Собрано и замерено на скромном железе. <b>Профессиональное GPU / compute-спонсорство</b> или поддержка сообщества ускорят evals и roadmap.'],
     [q('.author h3'),'Sardor Razikov — независимый AI/ML-инженер'],
     [q('.author p'),'Строитель из Ташкента, Узбекистан. On-prem LLM-инфраструктура, cost-эффективный инференс, сжатие. Frugal продуктизирует cost-routing-слой из его проекта REPOMIND. Открыт к acquisition, инвестициям, партнёрству и спонсорству железа.'],
-    [q('footer p'),'Frugal — гоняй AI-агентов дёшево, локально и с проверкой. © 2026 Sardor Razikov.']
+    [q('footer p'),'Frugal — гоняй AI-агентов дёшево, локально и с проверкой. © 2026 Sardor Razikov.'],
+    [q('#enterprise .eyebrow'),'Для enterprise · 2026'],
+    [q('#enterprise h2'),'Токен-налог — это уже реальные деньги.'],
+    [q('#enterprise .elead'),'Инференс — уже <b style="color:var(--green-txt)">~85% enterprise AI-бюджета</b>. Цены на токены упали ~280× за два года, но суммарный спенд вырос ~320% — агентный объём взорвался (10–20 вызовов на задачу, всегда-онлайн агенты). Дешёвые токены тебя не спасают; спасает маршрутизация того, чему не нужна большая модель. Frugal — этот управляющий слой.'],
+    [q('#enterprise .ent-lab0'),'Месячный спенд на инференс'],
+    [q('#enterprise .ent-lab1'),'Frugal экономит / год'],
+    [q('#enterprise .ecase-t',0),'«Uber спалил бюджет к апрелю»'],
+    [q('#enterprise .ecase-p',0),'Потокобезопасный жёсткий бюджет-cap + <code>reserve()</code> (отказ до траты) → бюджет нельзя молча слить; маршрутизация растягивает его в 2–4×.'],
+    [q('#enterprise .ecase-t',1),'«$500M на Claude, без лимитов»'],
+    [q('#enterprise .ecase-p',1),'Ровно то, что предотвращает бюджет-gateway — у каждого ключа/тенанта есть cap и live-вид $/токен через MCP-сервер.'],
+    [q('#enterprise .ecase-t',2),'Air-gapped-курс Palantir'],
+    [q('#enterprise .ecase-p',2),'Local-first маршрутизация держит приватную/простую работу на твоих GPU (0 утечек, проверено); эскалация на hosted-frontier только когда реально нужно.'],
+    [q('#enterprise .ecase-t',3),'Поддержка масштаба Klarna'],
+    [q('#enterprise .ecase-p',3),'2.3M чатов/мес ≈ 6.9M вызовов — большинство ходов простые → дешёвый тир. Моделируемая экономия ≈ $210k/год только на этом объёме.'],
+    [q('#enterprise .ent-note'),'Экономия смоделирована на публичных ценах API 2026 и консервативной доле маршрутизируемого (мы измеряем 75–91% на дешёвом тире); твой реальный микс определяет результат — воспроизведи через <span class="disp">python benchmarks/cost_model.py</span>. Факты о компаниях — цитируемые публичные отчёты; Frugal не аффилирован ни с одной названной компанией.']
   ];}
   document.getElementById('lang').addEventListener('click',function(){
     var map=M();

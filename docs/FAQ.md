@@ -17,7 +17,7 @@ Re-run them on your models and dispute the numbers; that's the point.
 Depends on the price gap and confidence signal. Real prices: ~**75–91%** cloud (GPT-4o-mini→4o),
 up to ~**97%** with a local cheap tier. It can even **lose** money on a small price gap
 (Haiku→Sonnet) with self-consistency — Frugal warns you when that's the case. Full math:
-[BUSINESS_CASE.md](../BUSINESS_CASE.md).
+run `python benchmarks/cost_model.py`, or see the [live savings breakdown](https://frugal-cost-router.netlify.app/#savings).
 
 **When does Frugal NOT save money?**
 When the cheap tier isn't much cheaper (<~10×) *and* you use a re-sampling confidence signal —
