@@ -57,7 +57,7 @@ flowchart TB
       E["eval — asserts · drift · LLM judge"]
       G["rag — faithfulness / citation checks"]
     end
-    subgraph observe["see &amp; cap the spend"]
+    subgraph observe["see and cap the spend"]
       MC["mcp — agent reads its own $/token"]
       GW["gateway — OpenAI-compatible budget proxy"]
       EC["economics — won't-save warning"]
