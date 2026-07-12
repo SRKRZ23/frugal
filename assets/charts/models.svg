@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" font-family="-apple-system,'Segoe UI',Roboto,sans-serif">
+<rect width="1200" height="560" rx="16" fill="#080a08"/>
+<rect x="1" y="1" width="1198" height="558" rx="15" fill="none" stroke="#1d241d"/>
+<g transform="translate(40,34)">
+  <polyline points="0,7 9,11 14,9 23,20" fill="none" stroke="#00e676" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="23" cy="20" r="2.4" fill="#00e676"/>
+  <text x="34" y="18" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="19" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">frugal</text>
+</g>
+<text x="40" y="86" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="26" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">A 3B model kept up with a 14B — 4.7× faster</text>
+<text x="40" y="114" font-size="15" fill="#b3bcb3">Real cluster, CPU inference, quality graded by an LLM judge (5 prompts)</text>
+<text x="194" y="180" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#f1f5f1" text-anchor="end">qwen2.5-coder:3b</text>
+<rect x="210" y="164" width="660" height="26" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="210" y="164" width="69.8" height="26" rx="6" fill="#00e676"/>
+<text x="289.9" y="183" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#3affa2">13s p50</text>
+<text x="1160" y="183" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13" fill="#3affa2" text-anchor="end">judge q 0.80</text>
+<text x="194" y="246" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="400" fill="#b3bcb3" text-anchor="end">qwen2.5:7b</text>
+<rect x="210" y="230" width="660" height="26" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="210" y="230" width="111.1" height="26" rx="6" fill="#2f6f4d"/>
+<text x="331.1" y="249" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#b3bcb3">20s p50</text>
+<text x="1160" y="249" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13" fill="#727c72" text-anchor="end">judge q 0.82</text>
+<text x="194" y="312" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="400" fill="#b3bcb3" text-anchor="end">deepseek-r1:7b</text>
+<rect x="210" y="296" width="660" height="26" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="210" y="296" width="326.1" height="26" rx="6" fill="#2f6f4d"/>
+<text x="546.1" y="315" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#b3bcb3">59s p50</text>
+<text x="1160" y="315" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13" fill="#727c72" text-anchor="end">judge q 0.64</text>
+<text x="194" y="378" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="400" fill="#b3bcb3" text-anchor="end">phi4:14b (ref)</text>
+<rect x="210" y="362" width="660" height="26" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="210" y="362" width="330.6" height="26" rx="6" fill="#2f6f4d"/>
+<text x="550.5" y="381" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#b3bcb3">60s p50</text>
+<text x="1160" y="381" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13" fill="#727c72" text-anchor="end">judge q 0.86</text>
+<text x="194" y="444" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="400" fill="#b3bcb3" text-anchor="end">deepseek-r1:14b</text>
+<rect x="210" y="428" width="660" height="26" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="210" y="428" width="625.9" height="26" rx="6" fill="#2f6f4d"/>
+<text x="845.9" y="447" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="14" font-weight="700" fill="#b3bcb3">114s p50</text>
+<text x="1160" y="447" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13" fill="#727c72" text-anchor="end">judge q 0.80</text>
+<text x="194" y="146" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">model</text>
+<text x="210" y="146" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72">latency (lower = better) →</text>
+<text x="40" y="536" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13.5" fill="#b3bcb3">Route to the 3B first, escalate the ~17% a real confidence check flags. Reasoning models = worst default for simple work.</text>
+</svg>

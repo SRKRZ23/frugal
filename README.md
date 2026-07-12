@@ -9,6 +9,11 @@
 [![Python](https://img.shields.io/badge/python-3.9%E2%80%933.12-blue.svg)](pyproject.toml)
 ![Tests](https://img.shields.io/badge/tests-56%20passing-brightgreen.svg)
 ![Deps](https://img.shields.io/badge/runtime%20deps-0-brightgreen.svg)
+![Modules](https://img.shields.io/badge/modules-9-00b25c.svg)
+![Offline](https://img.shields.io/badge/runs-offline%20(no%20API%20keys)-00b25c.svg)
+![MCP](https://img.shields.io/badge/MCP-compatible-8a2be2.svg)
+[![Stars](https://img.shields.io/github/stars/SRKRZ23/frugal?style=flat&color=00b25c)](https://github.com/SRKRZ23/frugal/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/SRKRZ23/frugal?color=00b25c)](https://github.com/SRKRZ23/frugal/commits/main)
 
 **Run AI agents cheap, local, and verified.**
 
@@ -36,7 +41,57 @@ tokens on trivial work, leak private prompts to the cloud, and fail *silently* a
 semantic level. Frugal is the thin layer that fixes all four in one place, built around a
 single shared cost **Meter**.
 
+## Architecture
+
+Nine modules, one shared cost ledger. Everything you do — route, cache, verify, serve — is
+metered in the same place, so the agent (and you) can always see the `$/token` truth.
+
+```mermaid
+flowchart TB
+    subgraph savers["spend less"]
+      R["route — cascade cheap→frontier"]
+      C["cache — repeat prompt = $0"]
+      L["local — on-prem, 0 private leaks"]
+    end
+    subgraph verify["prove it's good enough"]
+      E["eval — asserts · drift · LLM judge"]
+      G["rag — faithfulness / citation checks"]
+    end
+    subgraph observe["see &amp; cap the spend"]
+      MC["mcp — agent reads its own $/token"]
+      GW["gateway — OpenAI-compatible budget proxy"]
+      EC["economics — won't-save warning"]
+    end
+    M[("meter — one shared cost ledger + hard budget cap")]
+    R --> M
+    C --> M
+    L --> M
+    E --> M
+    G --> M
+    MC --> M
+    GW --> M
+    EC --> M
+```
+
+### How routing works
+
+The cheap or local model answers first. A **confidence check** decides whether that answer
+is trustworthy; only the uncertain ones escalate to a frontier model. If the price gap is too
+small to cover the check, Frugal **warns you instead of quietly overcharging**.
+
+```mermaid
+flowchart LR
+    P["prompt"] --> CH["cheap / local model"]
+    CH --> K{"confidence<br/>check"}
+    K -->|high| DONE["answer — cost saved"]
+    K -->|low| ESC["escalate to frontier"]
+    ESC --> DONE
+    K -.->|"price gap too small?"| WARN["economics warns you"]
+```
+
 ## Watch the bill
+
+<p align="center"><img src="assets/charts/cost-curve.png" alt="Cumulative cost: frontier-only $10.20 vs Frugal $0.83 over 2,400 requests — 91.9% saved" width="100%"></p>
 
 ```text
   FRUGAL — live cost   (gpt-4o-mini cheap → gpt-4o escalate, real prices)
@@ -50,6 +105,12 @@ single shared cost **Meter**.
 `python examples/live_cost_demo.py` (animated) or `--cast` to make an
 [asciinema](https://asciinema.org) recording (`examples/demo.cast`). Real prices;
 the exact savings depend on your workload and confidence signal — see the [savings breakdown on the live site](https://frugal-cost-router.netlify.app/#savings).
+
+<p align="center"><img src="assets/charts/savings.png" alt="Savings by scenario — 88–97% local, 90.6% with free logprob, down to −7% where cascading loses money" width="100%"></p>
+
+Frugal doesn't pretend it always wins: on a small price gap (Haiku→Sonnet, ~3×) a re-sampling
+check can *cost more* than it saves. The tool computes that and warns you — publishing where it
+**doesn't** work is why you can trust where it does.
 
 ## Verify it yourself in 10 seconds
 
@@ -178,6 +239,8 @@ model raises the cheap≈strong rate (17% with 0.5b → 67% with 3b-coder), so m
 safely stays cheap. This is what the benchmark surfaces instead of hiding.
 
 ### Cross-model comparison (real cluster, LLM-judged)
+
+<p align="center"><img src="assets/charts/models.png" alt="A 3B model kept up with a 14B at 4.7x the speed — real cluster, LLM-judged" width="100%"></p>
 
 `benchmarks/bench_models.py` on cluster node **carlito4** — five real Ollama models,
 CPU inference, quality graded by an **LLM judge** (`qwen2.5:7b`) against reference

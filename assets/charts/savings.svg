@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" font-family="-apple-system,'Segoe UI',Roboto,sans-serif">
+<rect width="1200" height="560" rx="16" fill="#080a08"/>
+<rect x="1" y="1" width="1198" height="558" rx="15" fill="none" stroke="#1d241d"/>
+<g transform="translate(40,34)">
+  <polyline points="0,7 9,11 14,9 23,20" fill="none" stroke="#00e676" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="23" cy="20" r="2.4" fill="#00e676"/>
+  <text x="34" y="18" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="19" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">frugal</text>
+</g>
+<text x="40" y="86" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="26" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">What it saves, by scenario</text>
+<text x="40" y="114" font-size="15" fill="#b3bcb3">Measured at real prices — including the honest case where cascading LOSES money</text>
+<text x="344" y="180" font-size="15" font-weight="700" fill="#f1f5f1" text-anchor="end">Local ($0) → GPT-4o</text>
+<text x="344" y="198" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="11.5" fill="#727c72" text-anchor="end">on-prem</text>
+<rect x="360" y="164" width="720" height="30" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="360" y="164" width="666.0" height="30" rx="6" fill="#00e676"/>
+<text x="1036.0" y="184" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" font-weight="700" fill="#3affa2">88–97%</text>
+<text x="344" y="240" font-size="15" font-weight="700" fill="#f1f5f1" text-anchor="end">GPT-4o-mini → GPT-4o</text>
+<text x="344" y="258" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="11.5" fill="#727c72" text-anchor="end">16× · free logprob</text>
+<rect x="360" y="224" width="720" height="30" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="360" y="224" width="652.3" height="30" rx="6" fill="#00e676"/>
+<text x="1022.3" y="244" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" font-weight="700" fill="#3affa2">90.6%</text>
+<text x="344" y="300" font-size="15" font-weight="700" fill="#f1f5f1" text-anchor="end">GPT-4o-mini → GPT-4o</text>
+<text x="344" y="318" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="11.5" fill="#727c72" text-anchor="end">16× · self-consistency</text>
+<rect x="360" y="284" width="720" height="30" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="360" y="284" width="541.4" height="30" rx="6" fill="#00e676"/>
+<text x="911.4" y="304" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" font-weight="700" fill="#3affa2">75.2%</text>
+<text x="344" y="360" font-size="15" font-weight="700" fill="#f1f5f1" text-anchor="end">Llama-8B → Llama-70B</text>
+<text x="344" y="378" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="11.5" fill="#727c72" text-anchor="end">4.5× · free logprob</text>
+<rect x="360" y="344" width="720" height="30" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="360" y="344" width="511.2" height="30" rx="6" fill="#00e676"/>
+<text x="881.2" y="364" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" font-weight="700" fill="#3affa2">71%</text>
+<text x="344" y="420" font-size="15" font-weight="700" fill="#f1f5f1" text-anchor="end">Claude Haiku → Sonnet</text>
+<text x="344" y="438" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="11.5" fill="#727c72" text-anchor="end">3× · self-consistency</text>
+<rect x="360" y="404" width="720" height="30" rx="6" fill="#0f130f" stroke="#1d241d"/>
+<rect x="360" y="404" width="50.4" height="30" rx="6" fill="#ff5a5a"/>
+<text x="420.4" y="424" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" font-weight="700" fill="#ff5a5a">−7%</text>
+<text x="40" y="536" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="13.5" fill="#b3bcb3">Rule: cascade only at a ≥~10× price gap or use a local/logprob tier — Frugal computes this and <tspan fill="#ff5a5a">warns</tspan> you.</text>
+</svg>

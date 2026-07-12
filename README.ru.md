@@ -9,6 +9,11 @@
 [![Python](https://img.shields.io/badge/python-3.9%E2%80%933.12-blue.svg)](pyproject.toml)
 ![Tests](https://img.shields.io/badge/tests-56%20passing-brightgreen.svg)
 ![Deps](https://img.shields.io/badge/runtime%20deps-0-brightgreen.svg)
+![Modules](https://img.shields.io/badge/modules-9-00b25c.svg)
+![Offline](https://img.shields.io/badge/runs-offline%20(no%20API%20keys)-00b25c.svg)
+![MCP](https://img.shields.io/badge/MCP-compatible-8a2be2.svg)
+[![Stars](https://img.shields.io/github/stars/SRKRZ23/frugal?style=flat&color=00b25c)](https://github.com/SRKRZ23/frugal/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/SRKRZ23/frugal?color=00b25c)](https://github.com/SRKRZ23/frugal/commits/main)
 
 **Гоняй AI-агентов дёшево, локально и с проверкой.**
 
@@ -29,7 +34,57 @@ pip install -e .
 frugal demo          # сквозное демо, полностью офлайн
 ```
 
+## Архитектура
+
+Девять модулей, один общий cost-ledger. Всё, что ты делаешь — маршрутизация, кэш, проверка,
+раздача — считается в одном месте, поэтому агент (и ты) всегда видит правду про `$/токен`.
+
+```mermaid
+flowchart TB
+    subgraph savers["тратить меньше"]
+      R["route — каскад cheap→frontier"]
+      C["cache — повтор промпта = $0"]
+      L["local — on-prem, 0 утечек приватного"]
+    end
+    subgraph verify["доказать, что хватило"]
+      E["eval — asserts · дрейф · LLM-судья"]
+      G["rag — faithfulness / проверки цитат"]
+    end
+    subgraph observe["видеть и ограничивать спенд"]
+      MC["mcp — агент видит свой $/токен"]
+      GW["gateway — OpenAI-совместимый бюджет-прокси"]
+      EC["economics — предупреждение, если не окупится"]
+    end
+    M[("meter — один общий cost-ledger + жёсткий бюджет-cap")]
+    R --> M
+    C --> M
+    L --> M
+    E --> M
+    G --> M
+    MC --> M
+    GW --> M
+    EC --> M
+```
+
+### Как работает маршрутизация
+
+Сначала отвечает дешёвая/локальная модель. **Проверка уверенности** решает, можно ли доверять
+этому ответу; эскалируют только неуверенные. Если разрыв цен слишком мал, чтобы окупить проверку,
+Frugal **предупреждает, а не молча переплачивает**.
+
+```mermaid
+flowchart LR
+    P["промпт"] --> CH["дешёвая / локальная модель"]
+    CH --> K{"проверка<br/>уверенности"}
+    K -->|высокая| DONE["ответ — стоимость сэкономлена"]
+    K -->|низкая| ESC["эскалация на frontier"]
+    ESC --> DONE
+    K -.->|"разрыв цен мал?"| WARN["economics предупреждает"]
+```
+
 ## Смотри, как падает счёт
+
+<p align="center"><img src="assets/charts/cost-curve.png" alt="Накопленная стоимость: frontier-only $10.20 против Frugal $0.83 на 2400 запросах — экономия 91.9%" width="100%"></p>
 
 ```text
   FRUGAL — live cost   (gpt-4o-mini дешёвый → gpt-4o эскалация, реальные цены)
@@ -92,6 +147,8 @@ print(FrugalMCP(meter).call("get_cost_summary"))
 ```
 
 ## Экономия (реальные цены, июль 2026)
+
+<p align="center"><img src="assets/charts/savings.png" alt="Экономия по сценариям — 88–97% локально, 90.6% на бесплатном logprob, до −7% там, где каскад теряет деньги" width="100%"></p>
 
 - **Cloud (GPT-4o-mini → GPT-4o):** ~**75–91%** экономии в зависимости от смеси нагрузки и сигнала.
 - **Local ($0-токен) → GPT-4o:** до ~**88–97%** (self-consistency бесплатен при $0/токен).

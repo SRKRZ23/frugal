@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" font-family="-apple-system,'Segoe UI',Roboto,sans-serif">
+<rect width="1200" height="560" rx="16" fill="#080a08"/>
+<rect x="1" y="1" width="1198" height="558" rx="15" fill="none" stroke="#1d241d"/>
+<g transform="translate(40,34)">
+  <polyline points="0,7 9,11 14,9 23,20" fill="none" stroke="#00e676" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="23" cy="20" r="2.4" fill="#00e676"/>
+  <text x="34" y="18" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="19" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">frugal</text>
+</g>
+<text x="40" y="86" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="26" font-weight="700" fill="#f1f5f1" letter-spacing="-.5">Cost that doesn't scale with volume</text>
+<text x="40" y="114" font-size="15" fill="#b3bcb3">Cumulative spend over 2,400 requests · GPT-4o-mini → GPT-4o · real July-2026 prices</text>
+<line x1="70" y1="150.0" x2="1130" y2="150.0" stroke="#1d241d"/>
+<text x="60" y="154.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">$11</text>
+<line x1="70" y1="232.5" x2="1130" y2="232.5" stroke="#1d241d"/>
+<text x="60" y="236.5" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">$8</text>
+<line x1="70" y1="315.0" x2="1130" y2="315.0" stroke="#1d241d"/>
+<text x="60" y="319.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">$5</text>
+<line x1="70" y1="397.5" x2="1130" y2="397.5" stroke="#1d241d"/>
+<text x="60" y="401.5" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">$3</text>
+<line x1="70" y1="480.0" x2="1130" y2="480.0" stroke="#1d241d"/>
+<text x="60" y="484.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="end">$0</text>
+<text x="70.0" y="502.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="middle">0</text>
+<text x="335.0" y="502.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="middle">600</text>
+<text x="600.0" y="502.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="middle">1200</text>
+<text x="865.0" y="502.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="middle">1800</text>
+<text x="1130.0" y="502.0" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12" fill="#727c72" text-anchor="middle">2400</text>
+<polyline points="70.0,480.0 1130.0,165.7" fill="none" stroke="#c9d1c9" stroke-width="2.6" opacity=".85"/>
+<polyline points="70.0,480.0 1130.0,454.4" fill="none" stroke="#00e676" stroke-width="3.2"/>
+<circle cx="1130.0" cy="165.7" r="5" fill="#c9d1c9"/>
+<circle cx="1130.0" cy="454.4" r="5.5" fill="#00e676"/>
+<text x="1116.0" y="170.7" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="15" font-weight="700" fill="#c9d1c9" text-anchor="end">frontier-only  $10.20</text>
+<text x="1116.0" y="444.4" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="15" font-weight="700" fill="#3affa2" text-anchor="end">frugal  $0.83</text>
+<text x="40" y="536" font-family="ui-monospace,'JetBrains Mono','SF Mono',Menlo,monospace" font-size="16" fill="#b3bcb3">saved <tspan fill="#3affa2" font-weight="700">91.9%</tspan> — $9.37 kept in your pocket, and the gap only widens with scale</text>
+</svg>
