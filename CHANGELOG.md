@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+- `diagnose` — read-only savings **projection** on a customer's own prompt log (offline, no model
+  called, nothing leaves the box). Clearly labelled a projection; complexity heuristic broadened
+  (reasoning/code signals + code-fence bump) so hard prompts are no longer under-flagged.
+- `diagnose --live` / `diagnose.diagnose_live()` — the **measured** counterpart: actually routes
+  every prompt through the real cascade (Ollama/OpenAI-compatible) and observes cost, latency, and
+  the escalation decision. Point `--host` at a local/on-prem server to keep data in-house.
+- `METHODOLOGY.md` — added the real 2026-07-13 cross-model run (`benchmarks/RESULTS_MODELS.md`):
+  qwen2.5:7b vs phi4:14b on CPU, LLM-judged, N=6 — cheap tier 2.0× faster p50 at ~98% judged
+  quality, 5/6 agreement. Replaces the mock stand-in; caveats retained.
+
 ## 0.1.0 — first public release
 First open-source release of Frugal — a drop-in cost/routing/eval layer for LLM apps.
 
