@@ -111,6 +111,19 @@ def cmd_demo(args) -> int:
     return 0
 
 
+def cmd_diagnose(args) -> int:
+    from .diagnose import diagnose_prompts, load_prompts
+    prompts = load_prompts(args.file)
+    if not prompts:
+        print(f"no prompts found in {args.file}")
+        return 1
+    d = diagnose_prompts(prompts, current_model=args.current, cheap_model=args.cheap,
+                         frontier_model=args.frontier, threshold=args.threshold,
+                         out_tokens=args.out_tokens)
+    print(d.summary())
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="frugal", description="Run AI agents cheap, local, and verified.")
     sub = p.add_subparsers(dest="cmd")
@@ -138,6 +151,15 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--port", type=int, default=8080)
     g.add_argument("--budget", type=float, default=None)
     g.set_defaults(func=cmd_gateway)
+
+    dg = sub.add_parser("diagnose", help="project routing savings on YOUR prompt log (offline, no model called, nothing leaves the machine)")
+    dg.add_argument("file", help="a .jsonl (prompt/messages) or .txt (one prompt per line) of your prompts")
+    dg.add_argument("--current", default="gpt-4o", help="the model you run today (the baseline you're compared against)")
+    dg.add_argument("--cheap", default="gpt-4o-mini", help="the cheap/local tier Frugal routes to first")
+    dg.add_argument("--frontier", default="gpt-4o", help="the frontier tier Frugal escalates to")
+    dg.add_argument("--threshold", type=float, default=0.6, help="complexity score above which a prompt escalates")
+    dg.add_argument("--out-tokens", type=int, default=300, dest="out_tokens", help="assumed output tokens/request")
+    dg.set_defaults(func=cmd_diagnose)
 
     v = sub.add_parser("version", help="print version")
     v.set_defaults(func=lambda a: (print(__version__), 0)[1])
