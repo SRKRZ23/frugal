@@ -24,3 +24,6 @@ benchmarks/RESULTS_MODELS.json
 .DS_Store
 .idea/
 .vscode/
+
+# Local Netlify folder
+.netlify

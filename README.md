@@ -10,6 +10,8 @@
 
 **Run AI agents cheap, local, and verified.**
 
+🌐 **[Live site](https://frugal-cost-router.netlify.app)** · 🎞 **[Interactive deck](https://frugal-cost-router.netlify.app/deck.html)**
+
 Frugal is a drop-in ops layer for LLM apps and agents. It makes any workload:
 
 - 💸 **cheaper** — meter every call, cascade-route cheap→frontier, enforce a hard budget

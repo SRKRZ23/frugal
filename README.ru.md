@@ -10,6 +10,8 @@
 
 **Гоняй AI-агентов дёшево, локально и с проверкой.**
 
+🌐 **[Живой сайт](https://frugal-cost-router.netlify.app)** · 🎞 **[Интерактивная презентация](https://frugal-cost-router.netlify.app/deck.html)**
+
 Frugal — drop-in слой для LLM-приложений и агентов. Он делает любую нагрузку:
 
 - 💸 **дешевле** — считает каждый вызов, каскад cheap→frontier, жёсткий бюджет-cap

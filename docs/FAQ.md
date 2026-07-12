@@ -1,7 +1,9 @@
 # Frugal FAQ
 
+**🇬🇧 English · [🇷🇺 Русский](FAQ.ru.md)**
+
 **Isn't this just LiteLLM / a proxy with a router?**
-No — the proxy is one of seven pieces. Frugal's point is the *decide + verify* loop: a
+No — the proxy is one of nine pieces. Frugal's point is the *decide + verify* loop: a
 cost-aware cascade with a real confidence check, offline eval/RAG asserts for CI, an MCP
 server exposing the agent's own spend, local-first routing, and a reproducible model-vs-model
 benchmark. If you only need a provider proxy, use LiteLLM. See the comparison in the README.

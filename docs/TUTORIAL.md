@@ -1,5 +1,7 @@
 # Frugal tutorial — from zero to cost-routed in 10 minutes
 
+**🇬🇧 English · [🇷🇺 Русский](TUTORIAL.ru.md)**
+
 Every step runs offline first (mock provider), then shows the real-provider swap.
 
 ## 0. Install
